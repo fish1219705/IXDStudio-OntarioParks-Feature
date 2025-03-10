@@ -9,16 +9,14 @@
 <body>
 
     <div id="main-container">
-        <!-- First column: Park Images -->
-        <div id="image-column">
-            <h3>Explore parks</h3>
-            <div id="park-images">
-                <img id="park-image" src="default.jpg" alt="Park Image" />
-            </div>
+        <!-- First column: Park Name & Map -->
+        <div id="first-column">
+            <h3><span id="place-name">Select a Park</span></h3>
+            <div id="map"></div>
         </div>
 
-        <!-- Second column: Dropdown & Map -->
-        <div id="map-column">
+        <!-- Second column: Dropdown Menu & Park Details -->
+        <div id="second-column">
             <div id="controls">
                 <select id="park-select">
                     <option value="">Select a Provincial/National Park</option>
@@ -32,20 +30,18 @@
                 </select>
             </div>
 
-            <div id="map"></div>
-        </div>
-
-        <!-- Third column: Park Details -->
-        <div id="details-column">
-            <h3>Park Details</h3>
             <div id="place-details">
-                <p><strong>Place Name:</strong> <span id="place-name">Select a park above!</span></p>
                 <p><strong>Coordinates:</strong> <span id="place-coordinates">---</span></p>
                 <p><strong>Description:</strong> <span id="place-description">Select a park to see its details.</span></p>
             </div>
 
+            <div id="park-images">
+                <h4>Park Images</h4>
+                <img id="park-image" src="default.jpg" alt="Park Image" />
+            </div>
+
             <div id="directions-link">
-                <h4><a id="directions-button" href="#" target="_blank">Get Directions</a></h4>
+                <h4><a id="directions-button" href="#" target="_blank">Get Direction</a></h4>
             </div>
         </div>
     </div>
@@ -60,3 +56,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

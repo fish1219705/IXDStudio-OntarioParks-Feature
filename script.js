@@ -35,9 +35,6 @@ function initMap() {
             document.getElementById("place-coordinates").textContent = `${park.lat.toFixed(6)}, ${park.lng.toFixed(6)}`;
             document.getElementById("place-description").textContent = park.description;
 
-            // Update park image
-            document.getElementById("park-image").src = park.image;
-
             // Update directions link
             const parkDirectionsLinks = {
                 "1": "https://www.google.com/maps/dir/?api=1&destination=45.8372,-78.3790",
