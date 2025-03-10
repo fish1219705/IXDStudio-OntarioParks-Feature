@@ -4,177 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontario Camping Parks - Maps</title>
-    <style>
-         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        #map {
-            height: 400px;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        /* Container for dropdown and directions link */
-        #parkWithD {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 10px auto;
-            max-width: 800px;
-            padding: 0 10px;
-        }
-
-        #park-select {
-            width: 48%;
-            padding: 10px;
-        }
-
-        #directions-link {
-            width: 48%;
-            text-align: right;
-            font-weight: 300;
-            font-size: small;
-        }
-
-        #directions-button {
-            text-decoration: none;
-            color: white;
-            background-color: darkgreen;
-            padding: 10px;
-            border-radius: 4px;
-            font-weight: 300;
-            font-size: small;
-        }
-
-        #directions-button:hover {
-            background-color:green;
-        }
-
-        /* Responsive layout for small screens */
-        @media (max-width: 600px) {
-            #controls {
-                flex-direction: column;
-            }
-
-            #park-select, #directions-link {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
-
-        #loading {
-            display: none;
-            text-align: center;
-            font-size: 18px;
-            color: #555;
-        }
-
-        #place-details {
-            margin-top: 10px;
-            font-family: Arial, sans-serif;
-        }
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div id="parkWithD">
-    <select id="park-select">
-        <option value="">Select a Provincial/National Park</option>
-        <option value="1">Algonquin Provincial Park</option>
-        <option value="2">Bon Echo Provincial Park</option>
-        <option value="3">Killarney Provincial Park</option>
-        <option value="4">Pinery Provincial Park</option>
-        <option value="5">Killbear Provincial Park</option>
-        <option value="6">Bruce Peninsula National Park</option>
-        <option value="7">Sleeping Giant Provincial Park</option>
-    </select>
+    <div id="main-container">
+        <!-- First column: Park Images -->
+        <div id="image-column">
+            <h3>Explore parks</h3>
+            <div id="park-images">
+                <img id="park-image" src="default.jpg" alt="Park Image" />
+            </div>
+        </div>
 
-    <div id="directions-link">
-        <h4><a id="directions-button" href="#" target="_blank">Click Here To Get Directions of Selected Park</a></h4>
-    </div>
-    </div>
+        <!-- Second column: Dropdown & Map -->
+        <div id="map-column">
+            <div id="controls">
+                <select id="park-select">
+                    <option value="">Select a Provincial/National Park</option>
+                    <option value="1">Algonquin Provincial Park</option>
+                    <option value="2">Bon Echo Provincial Park</option>
+                    <option value="3">Killarney Provincial Park</option>
+                    <option value="4">Pinery Provincial Park</option>
+                    <option value="5">Killbear Provincial Park</option>
+                    <option value="6">Bruce Peninsula National Park</option>
+                    <option value="7">Sleeping Giant Provincial Park</option>
+                </select>
+            </div>
 
-    <div id="map"></div>
+            <div id="map"></div>
+        </div>
+
+        <!-- Third column: Park Details -->
+        <div id="details-column">
+            <h3>Park Details</h3>
+            <div id="place-details">
+                <p><strong>Place Name:</strong> <span id="place-name">Select a park above!</span></p>
+                <p><strong>Coordinates:</strong> <span id="place-coordinates">---</span></p>
+                <p><strong>Description:</strong> <span id="place-description">Select a park to see its details.</span></p>
+            </div>
+
+            <div id="directions-link">
+                <h4><a id="directions-button" href="#" target="_blank">Get Directions</a></h4>
+            </div>
+        </div>
+    </div>
 
     <div id="loading" style="display:none;">Loading...</div>
-    
-    <div id="place-details">
-        <p><strong>Place Name:</strong> <span id="place-name">Select a park above!</span></p>
-        <p><strong>Coordinates:</strong> <span id="place-coordinates">---</span></p>
-    </div>
-
-
 
     <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_iXNTImyuhkXhWTQtBf1rHW6gUZ7E2MY&libraries=places&&language=en&callback=initMap" 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_iXNTImyuhkXhWTQtBf1rHW6gUZ7E2MY&libraries=places&language=en&callback=initMap" 
         async defer>
     </script>
 
-    <script>
-        function initMap() {
-            const parks = {
-                "1": { name: "Algonquin Provincial Park", lat: 45.8372, lng: -78.3790 },
-                "2": { name: "Bon Echo Provincial Park", lat: 44.8923, lng: -77.1935 },
-                "3": { name: "Killarney Provincial Park", lat: 46.0058, lng: -81.3957 },
-                "4": { name: "Pinery Provincial Park", lat: 43.2692, lng: -81.8110 },
-                "5": { name: "Killbear Provincial Park", lat: 45.3715, lng: -80.2132 },
-                "6": { name: "Bruce Peninsula National Park", lat: 45.2298, lng: -81.5250 },
-                "7": { name: "Sleeping Giant Provincial Park", lat: 48.2425, lng: -88.8183 }
-            };
-
-            const defaultLocation = { lat: 50.0000, lng: -85.0000 }; // Default: Center of Ontario
-            const map = new google.maps.Map(document.getElementById("map"), {
-                center: defaultLocation,
-                zoom: 5,
-            });
-
-            let marker = new google.maps.Marker({ map, visible: false });
-
-            document.getElementById("park-select").addEventListener("change", function () {
-            document.getElementById("loading").style.display = "block"; // Show loading indicator
-            setTimeout(() => {
-                const parkId = this.value;
-                if (!parkId) return;
-
-                const park = parks[parkId];
-                map.setCenter({ lat: park.lat, lng: park.lng });
-                map.setZoom(8);
-
-                marker.setPosition({ lat: park.lat, lng: park.lng });
-                marker.setVisible(true);
-
-                document.getElementById("place-name").textContent = park.name;
-                document.getElementById("place-coordinates").textContent = `${park.lat.toFixed(6)}, ${park.lng.toFixed(6)}`;
-
-                document.getElementById("loading").style.display = "none"; // Hide loading indicator
-            }, 500); // Simulate a delay
-        });
-        }
-
-
-        const parkDirectionsLinks = {
-        "1": "https://www.google.com/maps/dir/?api=1&destination=45.8372,-78.3790",
-        "2": "https://www.google.com/maps/dir/?api=1&destination=44.8923,-77.1935",
-        "3": "https://www.google.com/maps/dir/?api=1&destination=46.0058,-81.3957",
-        "4": "https://www.google.com/maps/dir/?api=1&destination=43.2692,-81.8110",
-        "5": "https://www.google.com/maps/dir/?api=1&destination=45.3715,-80.2132",
-        "6": "https://www.google.com/maps/dir/?api=1&destination=45.2298,-81.5250",
-        "7": "https://www.google.com/maps/dir/?api=1&destination=48.2425,-88.8183"
-    };
-
-        document.getElementById("park-select").addEventListener("change", function () {
-            const parkId = this.value;
-            if (parkId) {
-                document.getElementById("directions-button").href = parkDirectionsLinks[parkId];
-            }
-        });
-
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
-
