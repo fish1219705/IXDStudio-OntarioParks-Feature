@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    text-align: center;
+    padding: 20px;
+}
+
+#progress-bar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.step {
+    padding: 5px 10px;
+    border-bottom: 3px solid lightgray;
+    color: gray;
+}
+
+.completed {
+    color: black;
+    border-bottom: 3px solid black;
+}
+
+.active {
+    color: black;
+    border-bottom: 3px solid black;
+    font-weight: bold;
+}
+
+#booking-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 40px);
+    gap: 5px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.calendar-day {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+
+.available {
+    background-color: green;
+    color: white;
+}
+
+.selected {
+    background-color: orange !important;
+    color: white;
+} 
+
+.date-box {
+    display: inline-block;
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    min-width: 80px;
+}
+
+.month-label {
+    display: block;
+    font-size: 14px;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid gray;
+}
+
+
+
+
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+button {
+    background-color: black;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background: darkgray;
+}

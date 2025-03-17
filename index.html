@@ -8,15 +8,26 @@
 </head>
 <body>
 
+    <div id="progress-bar">
+        <span class="step active">Choose a Park</span>
+        <span class="step">Visit Type</span>
+        <span class="step">Dates & Availability</span>
+        <span class="step">Visitor Info</span>
+        <span class="step">Add-ons</span>
+        <span class="step">Payment</span>
+        <span class="step">Confirmation</span>
+    </div>
+
     <div id="main-container">
         <!-- First column: Park Name & Map -->
         <div id="first-column">
-            <h3><span id="place-name">Select a Park</span></h3>
+            <h3><span id="place-name">Choose a Park</span></h3>
             <div id="map"></div>
         </div>
 
         <!-- Second column: Dropdown Menu & Park Details -->
         <div id="second-column">
+            <h2>Search Park</h2> <!-- Title Above Dropdown -->
             <div id="controls">
                 <select id="park-select">
                     <option value="">Select a Provincial/National Park</option>
@@ -29,11 +40,17 @@
                     <option value="7">Sleeping Giant Provincial Park</option>
                 </select>
             </div>
-
-            <div id="place-details">
-                <p><strong>Coordinates:</strong> <span id="place-coordinates">---</span></p>
-                <p><strong>Description:</strong> <span id="place-description">Select a park to see its details.</span></p>
-            </div>
+        
+            <!-- Park Name & Description -->
+            <h3 id="selected-park-name"></h3>
+            <p id="selected-park-description"></p>
+            <a id="more-details" href="#" target="_blank">More Details</a>
+        
+            <!-- Facilities Section -->
+            <h3>Facilities</h3>
+            <div id="facilities-list"></div>
+        </div>
+        
 
             <div id="park-images">
                 <h4>Park Images</h4>
@@ -43,7 +60,10 @@
             <div id="directions-link">
                 <h4><a id="directions-button" href="#" target="_blank">Get Direction</a></h4>
             </div>
-        </div>
+
+            <button id="next-step" class="next" onclick="location.href='visit.html'">Next Step</button>
+
+        
     </div>
 
     <div id="loading" style="display:none;">Loading...</div>

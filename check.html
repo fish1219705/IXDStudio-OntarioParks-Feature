@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camping Availability</title>
+    <link rel="stylesheet" href="check.css">
+</head>
+<body>
+    <div id="progress-bar">
+        <span class="step completed">Choose a Park</span>
+        <span class="step completed">Visit Type</span>
+        <span class="step active">Dates & Availability</span>
+        <span class="step">Visitor Info</span>
+        <span class="step">Add-ons</span>
+        <span class="step">Payment</span>
+        <span class="step">Confirmation</span>
+    </div>
+
+    <div id="booking-container">
+        <h2>Pick Dates & View Availability</h2>
+        
+        <div id="calendar">
+            <!-- Calendar will be generated dynamically with JavaScript -->
+        </div>
+
+        <div id="selection-panel">
+            <div class="date-box">
+                <span>Arrival Date</span>
+                <div id="arrival-date">-</div>
+                <span class="month-label">MARCH</span>
+            </div>
+            <div class="date-box">
+                <span>Departure Date</span>
+                <div id="departure-date">-</div>
+                <span class="month-label">MARCH</span>
+            </div>
+            
+            <select id="adults">
+                <option value="1">1 Adult</option>
+                <option value="2">2 Adults</option>
+                <option value="3">3 Adults</option>
+                <option value="4">4 Adults</option>
+            </select>
+
+            <select id="children">
+                <option value="0">No Children</option>
+                <option value="1">1 Child</option>
+                <option value="2">2 Children</option>
+                <option value="3">3 Children</option>
+            </select>
+            
+            <button id="check-availability">Check Availability</button>
+        </div>
+    </div>
+
+    <div class="button-group">
+        <button id="prev-step" class="prev" onclick="location.href='visit.html'">Previous Step</button>
+        <button id="next-step" class="next" onclick="location.href='check.html'">Next Step</button>
+    </div>
+    
+    <script src="check.js"></script>
+</body>
+</html>
+

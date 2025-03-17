@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="visit.css">
+    <title>Visit</title>
+</head>
+<body>
+
+    <div id="progress-bar">
+        <span class="step completed">Choose a Park</span>
+        <span class="step active">Visit Type</span>
+        <span class="step">Dates & Availability</span>
+        <span class="step">Visitor Info</span>
+        <span class="step">Add-ons</span>
+        <span class="step">Payment</span>
+        <span class="step">Confirmation</span>
+    </div>
+
+    <div class="container">
+        <h1>Select Your Visit Type</h1>
+        <div class="visit-type-tabs">
+            <button class="active">Campsite</button>
+            <button>Day Use</button>
+            <button>Backcountry</button>
+            <button>Accommodations</button>
+            <button>Group Campsite</button>
+        </div>
+        
+        <div class="form-container">
+            
+            <label for="park-name">Park Name:</label>
+            <div id="controls">
+                <select id="park-name">
+                    <option value="">Select a Provincial/National Park</option>
+                    <option value="1">Algonquin Provincial Park</option>
+                    <option value="2">Bon Echo Provincial Park</option>
+                    <option value="3">Killarney Provincial Park</option>
+                    <option value="4">Pinery Provincial Park</option>
+                    <option value="5">Killbear Provincial Park</option>
+                    <option value="6">Bruce Peninsula National Park</option>
+                    <option value="7">Sleeping Giant Provincial Park</option>
+                </select>
+            </div>
+            
+
+            <label for="arrival">Arrival:</label>
+            <input type="datetime-local" id="arrival" />
+
+            <label for="departure">Departure:</label>
+            <input type="datetime-local" id="departure" />
+
+            <label for="party-size">Party Size:</label>
+            <select id="party-size">
+                <option>2 Adults, 2 Children</option>
+                <option>1 Adult, 1 Child</option>
+                <option>3 Adults</option>
+                <option>4 Adults</option>
+            </select>
+
+            <div class="button-group">
+                <button id="prev-step" class="prev" onclick="location.href='index.html'">Previous Step</button>
+                <button id="next-step" class="next" onclick="location.href='check.html'">Next Step</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="visit.js"></script>
+</body>
+</html>
