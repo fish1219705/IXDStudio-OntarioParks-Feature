@@ -1,4 +1,11 @@
 function initMap() {
+
+     // Hide the More Details link initially
+     document.getElementById("more-details").style.display = "none";
+     document.getElementById("directions-link").style.display = "none";
+     document.getElementById("facilities-container").style.display = "none"; 
+
+
     const parks = {
         "1": { name: "Algonquin Provincial Park", lat: 45.8372, lng: -78.3790, description: "Known for its wildlife and canoe routes.", image: "algonquin.jpg", facilities: ["🚻", "🏕️", "🚶"] },
         "2": { name: "Bon Echo Provincial Park", lat: 44.8923, lng: -77.1935, description: "Famous for Mazinaw Rock with Indigenous pictographs.", image: "bonnecho.jpg", facilities: ["🚻", "🔥", "🚣"] },
@@ -31,7 +38,22 @@ function initMap() {
         document.getElementById("loading").style.display = "block";
         setTimeout(() => {
             const parkId = this.value;
-            if (!parkId) return;
+            if (!parkId) {
+                map.setCenter(defaultLocation);
+                map.setZoom(5);
+            
+                marker.setVisible(false);
+            
+                // Hide the More Details link if no park is selected
+                document.getElementById("selected-park-name").textContent = "";
+                document.getElementById("selected-park-description").textContent = "";
+                document.getElementById("more-details").style.display = "none";
+                document.getElementById("directions-link").style.display = "none";
+                document.getElementById("facilities-container").style.display = "none";
+                
+                document.getElementById("loading").style.display = "none";
+                return;
+            }
 
             const park = parks[parkId];
             map.setCenter({ lat: park.lat, lng: park.lng });
@@ -42,13 +64,17 @@ function initMap() {
             document.getElementById("selected-park-name").textContent = park.name;
             document.getElementById("selected-park-description").textContent = park.description;
             document.getElementById("more-details").href = `https://www.google.com/search?q=${encodeURIComponent(park.name)}`;
+            document.getElementById("more-details").style.display = "inline-block";
 
             
             document.getElementById("directions-button").href = parkDirectionsLinks[parkId];
+            document.getElementById("directions-link").style.display = "block";
 
             // Facilities
-            const facilitiesContainer = document.getElementById("facilities-list");
+            const facilitiesContainer = document.getElementById("facilities-container");
+            const facilitiesList = document.getElementById("facilities-list");
             facilitiesContainer.innerHTML = park.facilities.map(facility => `<span class='facility-icon'>${facility}</span>`).join(" ");
+            facilitiesContainer.style.display = "block";
 
             document.getElementById("loading").style.display = "none";
         }, 500);

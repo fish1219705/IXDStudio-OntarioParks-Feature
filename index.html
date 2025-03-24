@@ -5,74 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ontario Camping Parks - Maps</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Header Navigation Bar -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Ontario Parks Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Find a Park</a></li>
+                <li><a href="#">Reservations</a></li>
+                <li><a href="#">Activities</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="user-controls">
+            <a href="#" class="login-btn">Login</a>
+            <a href="#" class="language-toggle">FR</a>
+        </div>
+    </header>
 
-    <div id="progress-bar">
-        <span class="step active">Choose a Park</span>
-        <span class="step">Visit Type</span>
-        <span class="step">Dates & Availability</span>
-        <span class="step">Visitor Info</span>
-        <span class="step">Add-ons</span>
-        <span class="step">Payment</span>
-        <span class="step">Confirmation</span>
-    </div>
-
-    <div id="main-container">
-        <!-- First column: Park Name & Map -->
-        <div id="first-column">
-            <h3><span id="place-name">Choose a Park</span></h3>
-            <div id="map"></div>
+    <div class="container">
+        <div id="progress-bar">
+            <div class="step active">
+                <span class="step-number">1</span>
+                <span class="step-text">Choose a Park</span>
+            </div>
+            <div class="step">
+                <span class="step-number">2</span>
+                <span class="step-text">Visit Type</span>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <span class="step-text">Dates & Availability</span>
+            </div>
+            <div class="step">
+                <span class="step-number">4</span>
+                <span class="step-text">Visitor Info</span>
+            </div>
+            <div class="step">
+                <span class="step-number">5</span>
+                <span class="step-text">Add-ons</span>
+            </div>
+            <div class="step">
+                <span class="step-number">6</span>
+                <span class="step-text">Payment</span>
+            </div>
+            <div class="step">
+                <span class="step-number">7</span>
+                <span class="step-text">Confirmation</span>
+            </div>
         </div>
 
-        <!-- Second column: Dropdown Menu & Park Details -->
-        <div id="second-column">
-            <h2>Search Park</h2> <!-- Title Above Dropdown -->
-            <div id="controls">
-                <select id="park-select">
-                    <option value="">Select a Provincial/National Park</option>
-                    <option value="1">Algonquin Provincial Park</option>
-                    <option value="2">Bon Echo Provincial Park</option>
-                    <option value="3">Killarney Provincial Park</option>
-                    <option value="4">Pinery Provincial Park</option>
-                    <option value="5">Killbear Provincial Park</option>
-                    <option value="6">Bruce Peninsula National Park</option>
-                    <option value="7">Sleeping Giant Provincial Park</option>
-                </select>
+        <div id="main-container">
+            <!-- First column: Park Name & Map -->
+            <div id="first-column">
+                <h3 id="place-name-heading">Choose a Park</h3>
+                <div id="map"></div>
+                <div id="park-images">
+                    <h4>Park Images</h4>
+                    <div class="image-gallery">
+                        <img class="park-image active" src="default.jpg" alt="Park Image" />
+                        <div class="gallery-controls">
+                            <button class="prev-image"><i class="fas fa-chevron-left"></i></button>
+                            <div class="image-indicators">
+                                <span class="indicator active"></span>
+                                <span class="indicator"></span>
+                                <span class="indicator"></span>
+                            </div>
+                            <button class="next-image"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        
-            <!-- Park Name & Description -->
-            <h3 id="selected-park-name"></h3>
-            <p id="selected-park-description"></p>
-            <a id="more-details" href="#" target="_blank">More Details</a>
-        
-            <!-- Facilities Section -->
-            <h3>Facilities</h3>
-            <div id="facilities-list"></div>
+
+            <!-- Second column: Dropdown Menu & Park Details -->
+            <div id="second-column">
+                <div class="search-section">
+                    <h2>Search Parks</h2>
+                    <div id="controls">
+                        <select id="park-select">
+                            <option value="">Select a Provincial/National Park</option>
+                            <option value="1">Algonquin Provincial Park</option>
+                            <option value="2">Bon Echo Provincial Park</option>
+                            <option value="3">Killarney Provincial Park</option>
+                            <option value="4">Pinery Provincial Park</option>
+                            <option value="5">Killbear Provincial Park</option>
+                            <option value="6">Bruce Peninsula National Park</option>
+                            <option value="7">Sleeping Giant Provincial Park</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Park Name & Description -->
+                <div class="park-details">
+                    <h3 id="selected-park-name"></h3>
+                    <p id="selected-park-description"></p>
+                    <a href="#" id="more-details" style="display: none;">More Details <i class="fas fa-external-link-alt"></i></a>
+                
+                    <!-- Facilities Section -->
+                    <div id="facilities-container" style="display: none;">
+                        <h3>Facilities</h3>
+                        <div id="facilities-list" class="facilities-grid"></div>
+                    </div>
+                
+                    <div id="directions-link">
+                        <a id="directions-button" href="#" target="_blank" class="btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        
 
-            <div id="park-images">
-                <h4>Park Images</h4>
-                <img id="park-image" src="default.jpg" alt="Park Image" />
-            </div>
-
-            <div id="directions-link">
-                <h4><a id="directions-button" href="#" target="_blank">Get Direction</a></h4>
-            </div>
-
+        <div class="navigation-buttons">
+            <button id="back-step" class="back">Back</button>
             <button id="next-step" class="next" onclick="location.href='visit.html'">Next Step</button>
-
-        
+        </div>
     </div>
 
-    <div id="loading" style="display:none;">Loading...</div>
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
 
-    <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_iXNTImyuhkXhWTQtBf1rHW6gUZ7E2MY&libraries=places&language=en&callback=initMap" 
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Ontario Parks</h4>
+                <p>© 2025 Ontario Parks. All rights reserved.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@ontarioparks.com</p>
+                <p>Phone: 1-888-ONT-PARK</p>
+            </div>
+        </div>
+    </footer>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_iXNTImyuhkXhWTQtBf1rHW6gUZ7E2MY&libraries=places&language=en&callback=initMap"
         async defer>
     </script>
-
     <script src="script.js"></script>
 </body>
 </html>
