@@ -8,157 +8,273 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Header Navigation Bar -->
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Ontario Parks Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active">Find a Park</a></li>
-                <li><a href="#">Reservations</a></li>
-                <li><a href="#">Activities</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="user-controls">
-            <a href="#" class="login-btn">Login</a>
-            <a href="#" class="language-toggle">FR</a>
-        </div>
-    </header>
 
-    <div class="container">
-        <div id="progress-bar">
-            <div class="step active">
-                <span class="step-number">1</span>
-                <span class="step-text">Choose a Park</span>
-            </div>
-            <div class="step">
-                <span class="step-number">2</span>
-                <span class="step-text">Visit Type</span>
-            </div>
-            <div class="step">
-                <span class="step-number">3</span>
-                <span class="step-text">Dates & Availability</span>
-            </div>
-            <div class="step">
-                <span class="step-number">4</span>
-                <span class="step-text">Visitor Info</span>
-            </div>
-            <div class="step">
-                <span class="step-number">5</span>
-                <span class="step-text">Add-ons</span>
-            </div>
-            <div class="step">
-                <span class="step-number">6</span>
-                <span class="step-text">Payment</span>
-            </div>
-            <div class="step">
-                <span class="step-number">7</span>
-                <span class="step-text">Confirmation</span>
-            </div>
+<div style="width: 1512px; height: 3778px; position: relative; background: white; overflow: hidden">
+    <div style="width: 515px; left: 80px; top: 277px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 31px; display: inline-flex">
+      <div style="align-self: stretch; color: black; font-size: 49px; font-family: Inter; font-weight: 700; line-height: 58.80px; word-wrap: break-word">Discover the Beauty of Ontario Parks</div>
+      <div style="width: 493px; color: black; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 19.20px; word-wrap: break-word">Welcome to Ontario Parks, where nature's wonders await you. Explore breathtaking landscapes, vibrant wildlife, and unforgettable experiences.</div>
+      <div style="justify-content: flex-start; align-items: center; gap: 23px; display: inline-flex">
+        <div style="width: 196px; height: 56px; padding: 10px; background: black; border-radius: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
+          <div style="color: white; font-size: 20px; font-family: Inter; font-weight: 700; line-height: 24px; word-wrap: break-word"><a href=park.html>Book</a></div>
         </div>
-
-        <div id="main-container">
-            <!-- First column: Park Name & Map -->
-            <div id="first-column">
-                <h3 id="place-name-heading">Choose a Park</h3>
-                <div id="map"></div>
-                <div id="park-images">
-                    <h4>Park Images</h4>
-                    <div class="image-gallery">
-                        <img class="park-image active" src="default.jpg" alt="Park Image" />
-                        <div class="gallery-controls">
-                            <button class="prev-image"><i class="fas fa-chevron-left"></i></button>
-                            <div class="image-indicators">
-                                <span class="indicator active"></span>
-                                <span class="indicator"></span>
-                                <span class="indicator"></span>
-                            </div>
-                            <button class="next-image"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Second column: Dropdown Menu & Park Details -->
-            <div id="second-column">
-                <div class="search-section">
-                    <h2>Search Parks</h2>
-                    <div id="controls">
-                        <select id="park-select">
-                            <option value="">Select a Provincial/National Park</option>
-                            <option value="1">Algonquin Provincial Park</option>
-                            <option value="2">Bon Echo Provincial Park</option>
-                            <option value="3">Killarney Provincial Park</option>
-                            <option value="4">Pinery Provincial Park</option>
-                            <option value="5">Killbear Provincial Park</option>
-                            <option value="6">Bruce Peninsula National Park</option>
-                            <option value="7">Sleeping Giant Provincial Park</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Park Name & Description -->
-                <div class="park-details">
-                    <h3 id="selected-park-name"></h3>
-                    <p id="selected-park-description"></p>
-                    <a href="#" id="more-details" style="display: none;">More Details <i class="fas fa-external-link-alt"></i></a>
-                
-                    <!-- Facilities Section -->
-                    <div id="facilities-container" style="display: none;">
-                        <h3>Facilities</h3>
-                        <div id="facilities-list" class="facilities-grid"></div>
-                    </div>
-                
-                    <div id="directions-link">
-                        <a id="directions-button" href="#" target="_blank" class="btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div data-property-1="Default" style="width: 196px; height: 56px; padding: 10px; border-radius: 10px; outline: 1px black solid; outline-offset: -1px; justify-content: center; align-items: center; gap: 10px; display: flex">
+          <div style="color: black; font-size: 20px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Know More</div>
         </div>
-
-        <div class="navigation-buttons">
-            <button id="back-step" class="back">Back</button>
-            <button id="next-step" class="next" onclick="location.href='visit.html'">Next Step</button>
-        </div>
+      </div>
     </div>
-
-    <div id="loading">
-        <div class="spinner"></div>
-        <p>Loading...</p>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Ontario Parks</h4>
-                <p>© 2025 Ontario Parks. All rights reserved.</p>
+    <img style="width: 792px; height: 948px; left: 640px; top: 152px; position: absolute; border-radius: 30px" src="https://placehold.co/792x948" />
+    <div style="width: 1352px; height: 910px; padding-top: 112px; padding-bottom: 112px; left: 80px; top: 1020px; position: absolute; justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+      <div style="width: 624px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 60px; display: inline-flex">
+        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 84px; display: flex">
+          <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: flex">
+            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 37px; display: flex">
+              <div style="align-self: stretch; color: black; font-size: 16px; font-family: Inter; font-weight: 700; line-height: 19.20px; word-wrap: break-word">Explore</div>
+              <div style="align-self: stretch; color: black; font-size: 39px; font-family: Inter; font-weight: 700; line-height: 46.80px; word-wrap: break-word">Discover the Wonders of Ontario Parks</div>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
+            <div style="align-self: stretch; color: black; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 19.20px; word-wrap: break-word">Ontario Parks offers breathtaking landscapes and diverse activities for everyone. Experience nature like never before, from hiking trails to serene lakes.</div>
+          </div>
+          <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 32px; display: inline-flex">
+            <div style="width: 296px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+              <div style="align-self: stretch; color: black; font-size: 20px; font-family: Inter; font-weight: 700; line-height: 24px; word-wrap: break-word">Outdoor Adventures</div>
+              <div style="align-self: stretch; color: black; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 19.20px; word-wrap: break-word">Engage in thrilling activities like canoeing, camping, and wildlife watching.</div>
             </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Email: info@ontarioparks.com</p>
-                <p>Phone: 1-888-ONT-PARK</p>
+            <div style="width: 296px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+              <div style="align-self: stretch; color: black; font-size: 20px; font-family: Roboto; font-weight: 700; line-height: 28px; word-wrap: break-word">Family Fun</div>
+              <div style="align-self: stretch; color: black; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 19.20px; word-wrap: break-word">Create lasting memories with family-friendly programs and events throughout the year.</div>
             </div>
+          </div>
         </div>
-    </footer>
-
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_iXNTImyuhkXhWTQtBf1rHW6gUZ7E2MY&libraries=places&language=en&callback=initMap"
-        async defer>
-    </script>
-    <script src="script.js"></script>
-</body>
-</html>
-
+        <div style="width: 157px; height: 40px; padding: 10px; border-radius: 10px; outline: 1px black solid; outline-offset: -1px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+          <div style="color: black; font-size: 13px; font-family: Inter; font-weight: 700; line-height: 15.60px; word-wrap: break-word">Learn More</div>
+        </div>
+      </div>
+      <img style="width: 623px; height: 647px; border-radius: 30px" src="https://placehold.co/623x647" />
+    </div>
+    <div style="width: 1352px; height: 486px; left: 80px; top: 1874px; position: absolute; flex-direction: column; justify-content: center; align-items: center; gap: 64px; display: inline-flex">
+      <div style="align-self: stretch; justify-content: center; align-items: flex-start; gap: 55px; display: inline-flex">
+        <div style="flex: 1 1 0; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: inline-flex">
+          <img style="align-self: stretch; height: 245.13px" src="https://placehold.co/414x245" />
+          <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; gap: 32px; display: flex">
+            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+              <div style="align-self: stretch; text-align: center; color: var(--Text-primary, black); font-size: 24px; font-family: Roboto; font-weight: 700; line-height: 33.60px; word-wrap: break-word">Engage in thrilling outdoor activities for all ages and skill levels.</div>
+              <div style="align-self: stretch; text-align: center; color: var(--Text-primary, black); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Experience the diverse wildlife that calls Ontario Parks home.</div>
+            </div>
+            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
+              <div style="overflow: hidden; justify-content: center; align-items: center; gap: 8px; display: inline-flex">
+                <div style="color: var(--Text-primary, black); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Book</div>
+                <div style="width: 24px; height: 24px; position: relative; overflow: hidden">
+                  <div style="width: 7.12px; height: 11.41px; left: 8.29px; top: 5.54px; position: absolute; background: var(--Color-Neutral-black, black)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="flex: 1 1 0; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: inline-flex">
+          <img style="align-self: stretch; height: 245.13px" src="https://placehold.co/414x245" />
+          <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; gap: 32px; display: flex">
+            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+              <div style="align-self: stretch; text-align: center; color: var(--Text-primary, black); font-size: 24px; font-family: Roboto; font-weight: 700; line-height: 33.60px; word-wrap: break-word">Immerse yourself in nature's beauty with stunning views and serene environments.</div>
+              <div style="align-self: stretch; text-align: center; color: var(--Text-primary, black); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">From hiking to canoeing, there's something for everyone to enjoy.</div>
+            </div>
+            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
+              <div style="overflow: hidden; justify-content: center; align-items: center; gap: 8px; display: inline-flex">
+                <div style="color: var(--Text-primary, black); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Book</div>
+                <div style="width: 24px; height: 24px; position: relative; overflow: hidden">
+                  <div style="width: 7.12px; height: 11.41px; left: 8.29px; top: 5.54px; position: absolute; background: var(--Color-Neutral-black, black)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="flex: 1 1 0; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: inline-flex">
+          <img style="align-self: stretch; height: 245.13px" src="https://placehold.co/414x245" />
+          <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; gap: 32px; display: flex">
+            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+              <div style="align-self: stretch; text-align: center; color: var(--Text-primary, black); font-size: 24px; font-family: Roboto; font-weight: 700; line-height: 33.60px; word-wrap: break-word">Witness the vibrant ecosystems and unique species in their natural habitats.</div>
+              <div style="align-self: stretch; text-align: center; color: var(--Text-primary, black); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Get up close with nature and learn about conservation efforts.</div>
+            </div>
+            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
+              <div style="overflow: hidden; justify-content: center; align-items: center; gap: 8px; display: inline-flex">
+                <div style="color: var(--Text-primary, black); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Book</div>
+                <div style="width: 24px; height: 24px; position: relative; overflow: hidden">
+                  <div style="width: 7.12px; height: 11.41px; left: 8.29px; top: 5.54px; position: absolute; background: var(--Color-Neutral-black, black)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 743px; left: 80px; top: 2470px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
+      <div style="justify-content: flex-start; align-items: center; display: inline-flex">
+        <div style="color: var(--Text-primary, black); font-size: 16px; font-family: Roboto; font-weight: 600; line-height: 24px; word-wrap: break-word">Blog</div>
+      </div>
+      <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; gap: 24px; display: flex">
+        <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 48px; font-family: Roboto; font-weight: 700; line-height: 57.60px; word-wrap: break-word">Explore Ontario's Natural Wonders</div>
+        <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 18px; font-family: Roboto; font-weight: 400; line-height: 27px; word-wrap: break-word">Discover the beauty of Ontario Parks and outdoor adventures.</div>
+      </div>
+    </div>
+    <div style="width: 1349px; height: 573px; left: 83px; top: 2699px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 64px; display: inline-flex">
+      <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 32px; display: inline-flex">
+        <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+          <img style="align-self: stretch; height: 308.89px" src="https://placehold.co/428x309" />
+          <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+            <div style="justify-content: flex-start; align-items: flex-start; display: inline-flex">
+              <div style="width: 57px; color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Nature</div>
+            </div>
+            <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 24px; font-family: Roboto; font-weight: 700; line-height: 33.60px; word-wrap: break-word">Top 5 Hiking Trails in Ontario</div>
+            <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Uncover breathtaking views and unforgettable experiences on these trails.</div>
+          </div>
+          <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+            <img style="width: 48px; height: 48px" src="https://placehold.co/48x48" />
+            <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+              <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">John Smith</div>
+              <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
+                <div style="color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 21px; word-wrap: break-word">11 Jan 2022</div>
+                <div style="color: var(--Text-primary, black); font-size: 18px; font-family: Roboto; font-weight: 400; line-height: 27px; word-wrap: break-word">•</div>
+                <div style="color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 21px; word-wrap: break-word">5 min read</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+          <img style="align-self: stretch; height: 308.89px" src="https://placehold.co/428x309" />
+          <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+            <div style="justify-content: flex-start; align-items: flex-start; display: inline-flex">
+              <div style="width: 57px; color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Wildlife</div>
+            </div>
+            <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 24px; font-family: Roboto; font-weight: 700; line-height: 33.60px; word-wrap: break-word">Protecting Ontario's Endangered Species</div>
+            <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Learn how you can help preserve Ontario's unique wildlife.</div>
+          </div>
+          <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+            <img style="width: 48px; height: 48px" src="https://placehold.co/48x48" />
+            <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+              <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Jane Doe</div>
+              <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
+                <div style="color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 21px; word-wrap: break-word">12 Feb 2022</div>
+                <div style="color: var(--Text-primary, black); font-size: 18px; font-family: Roboto; font-weight: 400; line-height: 27px; word-wrap: break-word">•</div>
+                <div style="color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 21px; word-wrap: break-word">6 min read</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+          <img style="align-self: stretch; height: 308.89px" src="https://placehold.co/428x309" />
+          <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+            <div style="justify-content: flex-start; align-items: flex-start; display: inline-flex">
+              <div style="width: 57px; color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Camping</div>
+            </div>
+            <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 24px; font-family: Roboto; font-weight: 700; line-height: 33.60px; word-wrap: break-word">Essential Camping Gear for Beginners</div>
+            <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Get ready for your first camping trip with these must-have items.</div>
+          </div>
+          <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+            <img style="width: 48px; height: 48px" src="https://placehold.co/48x48" />
+            <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+              <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Alice Johnson</div>
+              <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
+                <div style="color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 21px; word-wrap: break-word">15 Mar 2022</div>
+                <div style="color: var(--Text-primary, black); font-size: 18px; font-family: Roboto; font-weight: 400; line-height: 27px; word-wrap: break-word">•</div>
+                <div style="color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 21px; word-wrap: break-word">4 min read</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 1352px; height: 381px; padding: 48px; left: 80px; top: 3300px; position: absolute; justify-content: flex-start; align-items: flex-start; gap: 64px; display: inline-flex">
+      <div style="width: 864px; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: inline-flex">
+        <img style="width: 101px; height: 60px" src="https://placehold.co/101x60" />
+        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
+          <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+            <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 13px; font-family: Inter; font-weight: 700; line-height: 15.60px; word-wrap: break-word">Address:</div>
+            <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 21px; word-wrap: break-word">OntarioPark</div>
+          </div>
+          <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: flex">
+            <div style="align-self: stretch; color: var(--Text-primary, black); font-size: 13px; font-family: Inter; font-weight: 700; line-height: 15.60px; word-wrap: break-word">Contact:</div>
+            <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+              <div style="align-self: stretch; color: var(--Link-primary, black); font-size: 13px; font-family: Inter; font-weight: 400; line-height: 15.60px; word-wrap: break-word">1800 123 4567</div>
+              <div style="align-self: stretch; color: var(--Link-primary, black); font-size: 13px; font-family: Inter; font-weight: 400; line-height: 15.60px; word-wrap: break-word">info@ontariopark.ca</div>
+            </div>
+          </div>
+        </div>
+        <div style="justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
+          <div style="width: 24px; height: 24px; position: relative; overflow: hidden">
+            <div style="width: 20px; height: 20px; left: 2px; top: 2.24px; position: absolute; background: var(--Color-Neutral-black, black)"></div>
+          </div>
+          <div style="width: 24px; height: 24px; position: relative; overflow: hidden">
+            <div style="width: 18px; height: 18px; left: 3px; top: 3.24px; position: absolute; background: var(--Color-Neutral-black, black)"></div>
+          </div>
+          <div style="width: 24px; height: 24px; position: relative; overflow: hidden">
+            <div style="width: 18px; height: 16px; left: 3px; top: 4.24px; position: absolute; background: var(--Color-Neutral-black, black)"></div>
+          </div>
+          <div style="width: 24px; height: 24px; position: relative; overflow: hidden">
+            <div style="width: 18px; height: 18px; left: 3px; top: 3.24px; position: absolute; background: var(--Color-Neutral-black, black)"></div>
+          </div>
+          <div style="width: 24px; height: 24px; position: relative; overflow: hidden">
+            <div style="width: 20.01px; height: 14.01px; left: 1.99px; top: 5px; position: absolute; background: var(--Color-Neutral-black, black)"></div>
+          </div>
+        </div>
+      </div>
+      <div style="flex: 1 1 0; overflow: hidden; justify-content: flex-start; align-items: flex-start; gap: 32px; display: flex">
+        <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+          <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div style="flex: 1 1 0; color: var(--Link-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Link One</div>
+          </div>
+          <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div style="flex: 1 1 0; color: var(--Link-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Link Two</div>
+          </div>
+          <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div style="flex: 1 1 0; color: var(--Link-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Link Three</div>
+          </div>
+          <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div style="flex: 1 1 0; color: var(--Link-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Link Four</div>
+          </div>
+          <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div style="flex: 1 1 0; color: var(--Link-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Link Five</div>
+          </div>
+        </div>
+        <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+          <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div style="flex: 1 1 0; color: var(--Link-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Link Six</div>
+          </div>
+          <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div style="flex: 1 1 0; color: var(--Link-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Link Seven</div>
+          </div>
+          <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div style="flex: 1 1 0; color: var(--Link-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Link Eight</div>
+          </div>
+          <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div style="flex: 1 1 0; color: var(--Link-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Link Nine</div>
+          </div>
+          <div style="align-self: stretch; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div style="flex: 1 1 0; color: var(--Link-primary, black); font-size: 14px; font-family: Roboto; font-weight: 600; line-height: 21px; word-wrap: break-word">Link Ten</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 1280px; left: 80px; top: 3709px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 32px; display: inline-flex">
+      <div style="align-self: stretch; justify-content: space-between; align-items: flex-start; display: inline-flex">
+        <div style="color: var(--Text-primary, black); font-size: 13px; font-family: Inter; font-weight: 400; line-height: 15.60px; word-wrap: break-word">© 2024 OntarioPark. All rights reserved.</div>
+        <div style="justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
+          <div style="color: var(--Link-primary, black); font-size: 13px; font-family: Inter; font-weight: 400; line-height: 15.60px; word-wrap: break-word">Privacy Policy</div>
+          <div style="color: var(--Link-primary, black); font-size: 13px; font-family: Inter; font-weight: 400; line-height: 15.60px; word-wrap: break-word">Terms of Service</div>
+          <div style="color: var(--Link-primary, black); font-size: 13px; font-family: Inter; font-weight: 400; line-height: 15.60px; word-wrap: break-word">Cookies Settings</div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 1352px; height: 84.50px; left: 80px; top: 32px; position: absolute; justify-content: space-between; align-items: center; display: inline-flex">
+      <div style="justify-content: flex-start; align-items: center; gap: 90.84px; display: flex">
+        <img style="width: 106.68px; height: 63.17px" src="https://placehold.co/107x63" />
+        <div style="justify-content: flex-start; align-items: center; gap: 25.35px; display: flex">
+          <div style="color: black; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 19.20px; word-wrap: break-word">Park & Activities</div>
+          <div style="color: black; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 19.20px; word-wrap: break-word">Reservation</div>
+          <div style="color: black; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 19.20px; word-wrap: break-word">Plan Your Visit</div>
+          <div style="color: rgba(0, 0, 0, 0.80); font-size: 16px; font-family: Inter; font-weight: 400; line-height: 19.20px; word-wrap: break-word">Conservation & Education</div>
+          <div style="color: black; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 19.20px; word-wrap: break-word">About Us</div>
+        </div>
+      </div>
+      <div data-property-1="Default" style="width: 165.83px; height: 42.25px; padding: 10.56px; background: black; border-radius: 10.56px; justify-content: center; align-items: center; gap: 10.56px; display: flex">
+        <div style="color: white; font-size: 13px; font-family: Inter; font-weight: 700; line-height: 15.60px; word-wrap: break-word"><a href="park.html">Book</a></div>
+      </div>
+    </div>
+  </div>
