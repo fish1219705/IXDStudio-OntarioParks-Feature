@@ -1,3 +1,59 @@
+
+.visitor {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 800px;
+
+    margin-left: 260px;
+}
+
+h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.visitor-info {
+    margin-bottom: 15px;
+}
+
+.visitor-info label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.visitor-info input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #333;
+}
+
+
+
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
@@ -28,89 +84,6 @@ body {
     font-weight: bold;
 }
 
-#booking-container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-}
-
-#calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 40px);
-    gap: 5px;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.calendar-day {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-
-
-.available {
-    background-color: green;
-    color: white;
-}
-
-.selected {
-    background-color: orange !important;
-    color: white;
-} 
-
-.date-box {
-    display: inline-block;
-    background: black;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 10px;
-    min-width: 80px;
-}
-
-.month-label {
-    display: block;
-    font-size: 14px;
-}
-
-select, input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid gray;
-}
-
-
-
-
-
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-
-button {
-    background-color: black;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-button:hover {
-    background: darkgray;
-}
 
 
 
@@ -367,21 +340,4 @@ footer {
 
 #next-step:hover {
     background-color: #333;
-}
-
-#check-availability {
-    margin-top: 20px;
-}
-
-#availability-popup {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed position */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust for centering */
-    background-color: white; /* Background color */
-    border: 1px solid #ccc; /* Border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow */
-    padding: 20px; /* Padding */
-    z-index: 1000; /* Ensure it appears above other content */
 }
