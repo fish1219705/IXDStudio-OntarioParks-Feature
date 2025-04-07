@@ -90,9 +90,6 @@ select, input {
 }
 
 
-
-
-
 .button-group {
     display: flex;
     justify-content: space-between;
@@ -217,6 +214,10 @@ nav ul li a.active::after {
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
+}
+
+#progress-bar a {
+    text-decoration: none;
 }
 
 #progress-bar::before {

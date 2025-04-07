@@ -89,12 +89,14 @@ nav ul li a.active::after {
 /* Progress bar styles */
 #progress-bar {
     display: flex;
-    justify-content: space-between;
-    margin: 30px 0;
-    position: relative;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+#progress-bar a {
+    text-decoration: none;
+  
 }
 
 #progress-bar::before {
@@ -149,6 +151,23 @@ nav ul li a.active::after {
 .step.active .step-text {
     color: #000;
     font-weight: 600;
+}
+
+.step {
+    padding: 5px 10px;
+    border-bottom: 3px solid lightgray;
+    color: gray;
+}
+
+.completed {
+    color: black;
+    border-bottom: 3px solid black;
+}
+
+.active {
+    color: black;
+    border-bottom: 3px solid black;
+    font-weight: bold;
 }
 
 /* Container Styling */
