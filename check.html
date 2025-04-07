@@ -3,19 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camping Availability</title>
+    <title>Ontario Camping Parks - Maps</title>
     <link rel="stylesheet" href="check.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div id="progress-bar">
-        <span class="step completed">Choose a Park</span>
-        <span class="step active">Dates & Availability</span>
-        <span class="step">Visit Type</span>
-        <span class="step">Visitor Info</span>
-        <span class="step">Add-ons</span>
-        <span class="step">Payment</span>
-        <span class="step">Confirmation</span>
-    </div>
+    <!-- Header Navigation Bar -->
+    <header>
+        <div class="logo">
+            <a href="index.html"><img style="width: 62px; height: 89px" src="./image/icon.png" /></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Find a Park</a></li>
+                <li><a href="#">Reservations</a></li>
+                <li><a href="#">Activities</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="user-controls">
+            <a href="#" class="login-btn">Login</a>
+            <a href="#" class="language-toggle">FR</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="progress-bar">
+            <div class="step completed">
+                <span class="step-number">1</span>
+                <span class="step-text">Choose a Park</span>
+            </div>
+            <div class="step active">
+                <span class="step-number">2</span>
+                <span class="step-text">Dates & Availability</span>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <span class="step-text">Visit Type</span>
+            </div>
+            <div class="step">
+                <span class="step-number">4</span>
+                <span class="step-text">Visitor Info</span>
+            </div>
+            <div class="step">
+                <span class="step-number">5</span>
+                <span class="step-text">Add-ons</span>
+            </div>
+            <div class="step">
+                <span class="step-number">6</span>
+                <span class="step-text">Payment</span>
+            </div>
+            <div class="step">
+                <span class="step-number">7</span>
+                <span class="step-text">Confirmation</span>
+            </div>
+        </div>
 
     <div id="booking-container">
         <h2>Pick Dates & View Availability</h2>
@@ -54,10 +97,35 @@
         </div>
     </div>
 
-    <div class="button-group">
-        <button id="prev-step" class="prev" onclick="location.href='park.html'">Previous Step</button>
-        <button id="next-step" class="next" onclick="location.href='visit.html'">Next Step</button>
+    <div class="navigation-buttons">
+        <a href="check.html" id="back-step" class="back-link">Back</a>
+        <a href="/" id="next-step" class="next-link">Next Step</a>
     </div>
+
+</div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Ontario Parks</h4>
+                <p>© 2025 Ontario Parks. All rights reserved.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@ontarioparks.com</p>
+                <p>Phone: 1-888-ONT-PARK</p>
+            </div>
+        </div>
+    </footer>
+
     
     <script src="check.js"></script>
 </body>
