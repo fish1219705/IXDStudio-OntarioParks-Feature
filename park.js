@@ -81,3 +81,55 @@ function initMap() {
     });
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Image array (replace with your actual image paths)
+    const images = [
+        "./image/summer-2025.jpg",
+        "./image/KakabekaFalls_LookoutPlatformHorizontal.jpg",
+        "./image/AaronPP_FamilyCookingCampfire.jpg"
+    ];
+
+    // Gallery elements
+    const galleryImage = document.querySelector(".image-gallery img");
+    const prevButton = document.querySelector(".prev-image");
+    const nextButton = document.querySelector(".next-image");
+    const indicators = document.querySelectorAll(".image-indicators .indicator");
+
+    let currentIndex = 0;
+
+    // Function to update the gallery
+    function updateGallery(index) {
+        // Update image
+        galleryImage.src = images[index];
+
+        // Update indicators
+        indicators.forEach((indicator, i) => {
+            indicator.classList.toggle("active", i === index);
+        });
+
+        // Store current index
+        currentIndex = index;
+    }
+
+    // Next button click
+    nextButton.addEventListener("click", function() {
+        currentIndex = (currentIndex + 1) % images.length; // Loop to first image
+        updateGallery(currentIndex);
+    });
+
+    // Previous button click
+    prevButton.addEventListener("click", function() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length; // Loop to last image
+        updateGallery(currentIndex);
+    });
+
+    // Indicator click
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener("click", function() {
+            updateGallery(index);
+        });
+    });
+
+    // Initialize gallery
+    updateGallery(currentIndex);
+});

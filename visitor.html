@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ontario Camping Parks - </title>
+    <title>Ontario Parks - Visitor Information</title>
     <link rel="stylesheet" href="visitor.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -28,6 +28,7 @@
         </div>
     </header>
 
+    <div class="container">
     <div class="progress">
         <div id="progress-bar">
             <div class="step completed">
@@ -68,40 +69,33 @@
             </div>
         </div>
 
-    <div class="container">
-        <div class="visitor">
-            <h1>Visitor Information</h1>
-            
-            <div class="visitor-info">
-                <label for="visitor1">Visitor 1:</label>
-                <input type="text" id="visitor1" placeholder="Andrew Harris">
+        <div class="visitor-container">
+            <div class="visitor">
+                <h1>Visitor Information</h1>
+                
+                <div class="visitor-info">
+                    <label for="visitor1">Visitor 1:</label>
+                    <input type="text" id="visitor1" placeholder="Enter full name" aria-required="true">
+                    <div class="visitor-type">
+                        <label><input type="radio" name="visitor1-type" value="adult" checked> Adult</label>
+                        <label><input type="radio" name="visitor1-type" value="child"> Child</label>
+                    </div>
+                </div>
+                
+                <button id="add-visitor">Add another visitor</button>
             </div>
-            
-            <div class="visitor-info">
-                <label for="visitor2">Visitor 2:</label>
-                <input type="text" id="visitor2" placeholder="Emma Harris">
-            </div>
-            
-            <div class="visitor-info">
-                <label for="visitor3">Visitor 3:</label>
-                <input type="text" id="visitor3" placeholder="Ava Mark">
-            </div>
-            
-            <div class="visitor-info">
-                <label for="visitor4">Visitor 4:</label>
-                <input type="text" id="visitor4" placeholder="Alex Harris">
-            </div>
-            
-  
         </div>
 
         <div class="navigation-buttons">
             <a href="visit.html" id="back-step" class="back-link">Back</a>
             <a href="/" id="next-step" class="next-link">Next Step</a>
         </div>
-</div>
+    </div>
+    </div>
+
         <footer>
             <div class="footer-content">
+
                 <div class="footer-section">
                     <h4>Ontario Parks</h4>
                     <p>© 2025 Ontario Parks. All rights reserved.</p>

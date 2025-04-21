@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ontario Camping Parks - Visit Type</title>
+    <title>Ontario Parks - Visit Type</title>
     <link rel="stylesheet" href="visit.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -95,27 +95,32 @@
                             <span>Group Campsite</span>
                         </div>
                     </div>
+                    <div class="visit-type-prompt" id="visit-type-prompt"></div>
                 </div>
             </div>
-
+        
             <!-- Second column: Park and Visit Details -->
             <div id="second-column">
                 <div class="search-section">
                     <h2>Park & Visit Details</h2>
                     <div id="controls">
-                        <select id="park-select">
-                            <option value="">Select a Provincial/National Park</option>
-                            <option value="1">Algonquin Provincial Park</option>
-                            <option value="2">Bon Echo Provincial Park</option>
-                            <option value="3">Killarney Provincial Park</option>
-                            <option value="4">Pinery Provincial Park</option>
-                            <option value="5">Killbear Provincial Park</option>
-                            <option value="6">Bruce Peninsula National Park</option>
-                            <option value="7">Sleeping Giant Provincial Park</option>
-                        </select>
+                        <div class="custom-select" id="park-select" role="combobox" aria-expanded="false">
+                            <div class="selected-option" aria-haspopup="listbox">Select a Provincial/National Park</div>
+                            <ul class="options" style="display: none;" role="listbox">
+                                <li data-value="">Select a Provincial/National Park</li>
+                                <li data-value="1">Algonquin Provincial Park</li>
+                                <li data-value="2">Bon Echo Provincial Park</li>
+                                <li data-value="3">Killarney Provincial Park</li>
+                                <li data-value="4">Pinery Provincial Park</li>
+                                <li data-value="5">Killbear Provincial Park</li>
+                                <li data-value="6">Bruce Peninsula National Park</li>
+                                <li data-value="7">Sleeping Giant Provincial Park</li>
+                            </ul>
+                            <input type="hidden" name="park-select" id="park-select-value" value="">
+                        </div>
                     </div>
                 </div>
-
+        
                 <div class="park-details">
                     <h3>Visit Information</h3>
                     <div class="visit-info-form">
@@ -128,13 +133,25 @@
                             <input type="date" id="departure-date" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="party-size">Party Size</label>
-                            <select id="party-size" class="form-control">
-                                <option>2 Adults, 2 Children</option>
-                                <option>1 Adult, 1 Child</option>
-                                <option>3 Adults</option>
-                                <option>4 Adults</option>
-                            </select>
+                            <label>Party Size</label>
+                            <div class="party-size-inputs">
+                                <div class="input-group">
+                                    <label for="adults">Adults</label>
+                                    <div class="number-input">
+                                        <button class="decrement" data-target="adults">-</button>
+                                        <input type="text" id="adults" value="1" readonly>
+                                        <button class="increment" data-target="adults">+</button>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="children">Children</label>
+                                    <div class="number-input">
+                                        <button class="decrement" data-target="children">-</button>
+                                        <input type="text" id="children" value="0" readonly>
+                                        <button class="increment" data-target="children">+</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -168,5 +185,6 @@
             </div>
         </div>
     </footer>
+    <script src="visit.js"></script>
 </body>
 </html>

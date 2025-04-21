@@ -1,40 +1,82 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const addVisitorButton = document.getElementById('add-visitor');
+    const nextStepButton = document.getElementById('next-step');
+    const visitorContainer = document.querySelector('.visitor');
+    let visitorCount = 1;
 
-    document.addEventListener("DOMContentLoaded", function() {
-        // Get the next step button
-        const nextStepButton = document.getElementById('next-step');
+    // Function to create a new visitor section
+    function createVisitorSection(count) {
+        const visitorInfo = document.createElement('div');
+        visitorInfo.className = 'visitor-info';
+        visitorInfo.innerHTML = `
+            <label for="visitor${count}">Visitor ${count}:</label>
+            <input type="text" id="visitor${count}" placeholder="Enter full name" aria-required="true">
+            <div class="visitor-type">
+                <label><input type="radio" name="visitor${count}-type" value="adult" checked> Adult</label>
+                <label><input type="radio" name="visitor${count}-type" value="child"> Child</label>
+            </div>
+        `;
+        return visitorInfo;
+    }
 
-        // Add click event listener to the next step button
-        nextStepButton.addEventListener('click', function(event) {
-            // Prevent the default form submission
-            event.preventDefault();
+    // Add visitor button click event
+    addVisitorButton.addEventListener('click', function() {
+        visitorCount++;
+        const newVisitorInfo = createVisitorSection(visitorCount);
+        visitorContainer.insertBefore(newVisitorInfo, addVisitorButton);
+    });
 
-            // Get all visitor input fields
-            const visitorInputs = [
-                document.getElementById('visitor1'),
-                document.getElementById('visitor2'),
-                document.getElementById('visitor3'),
-                document.getElementById('visitor4')
-            ];
+    // Next step button click event
+    nextStepButton.addEventListener('click', function(event) {
+        event.preventDefault();
 
-            let allFilled = true; // Flag to check if all fields are filled
+        const visitorInfos = document.querySelectorAll('.visitor-info');
+        let allFilled = true;
 
-            // Validate each input field
-            visitorInputs.forEach(input => {
-                if (input.value.trim() === "") {
-                    allFilled = false;
-                    input.style.borderColor = 'red'; // Highlight empty fields
-                } else {
-                    input.style.borderColor = ''; // Reset valid fields
-                }
-            });
+        visitorInfos.forEach(info => {
+            const textInput = info.querySelector('input[type="text"]');
+            const radioInputs = info.querySelectorAll('input[type="radio"]');
+            const isRadioSelected = Array.from(radioInputs).some(radio => radio.checked);
 
-            // If all fields are filled, proceed to the next step
-            if (allFilled) {
-                // Here you can redirect to the next page or perform any action
-                // For example, to proceed to the next page:
-                window.location.href = "nextStep.html"; // Change to the actual next step URL
+            if (textInput.value.trim() === "") {
+                allFilled = false;
+                textInput.style.borderColor = 'red';
             } else {
-                alert("Please fill out all visitor name fields."); // Alert the user
+                textInput.style.borderColor = '';
+            }
+
+            if (!isRadioSelected) {
+                allFilled = false;
+                info.querySelector('.visitor-type').style.border = '1px solid red';
+            } else {
+                info.querySelector('.visitor-type').style.border = '';
             }
         });
+
+        if (allFilled) {
+            // Collect visitor data
+            const visitorData = Array.from(visitorInfos).map(info => ({
+                name: info.querySelector('input[type="text"]').value.trim(),
+                type: info.querySelector('input[type="radio"]:checked').value
+            }));
+            localStorage.setItem('visitorData', JSON.stringify(visitorData));
+            window.location.href = "nextStep.html"; // Replace with actual URL
+        } else {
+            alert("Please fill out all visitor names and select Adult/Child for each.");
+        }
     });
+
+    // Dynamic input feedback
+    visitorContainer.addEventListener('input', function(event) {
+        if (event.target.type === 'text') {
+            event.target.style.borderColor = event.target.value.trim() === '' ? 'red' : '';
+        }
+    });
+
+    visitorContainer.addEventListener('change', function(event) {
+        if (event.target.type === 'radio') {
+            const visitorType = event.target.closest('.visitor-type');
+            visitorType.style.border = Array.from(visitorType.querySelectorAll('input[type="radio"]')).some(radio => radio.checked) ? '' : '1px solid red';
+        }
+    });
+});

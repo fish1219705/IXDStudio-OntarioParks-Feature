@@ -10,6 +10,7 @@ body {
     background-color: #f5f7fa;
     color: #333;
     line-height: 1.6;
+    text-align: center;
 }
 
 .container {
@@ -88,7 +89,7 @@ nav ul li a.active::after {
 }
 
 .login-btn:hover {
-    background-color: #000;
+    background-color: #333;
 }
 
 .language-toggle {
@@ -102,12 +103,13 @@ nav ul li a.active::after {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 20px;
+    margin: 30px auto;
+    position: relative;
+    max-width: 1000px;
 }
 
 #progress-bar a {
     text-decoration: none;
-  
 }
 
 #progress-bar::before {
@@ -122,29 +124,15 @@ nav ul li a.active::after {
 }
 
 .step {
-    padding: 5px 10px;
-    border-bottom: 3px solid lightgray;
-    color: gray;
-}
-
-.completed {
-    color: black;
-    border-bottom: 3px solid black;
-}
-
-.active {
-    color: black;
-    border-bottom: 3px solid black;
-    font-weight: bold;
-}
-
-.step {
     position: relative;
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex: 1;
+    padding: 5px 10px;
+    border-bottom: 3px solid lightgray;
+    color: gray;
 }
 
 .step-number {
@@ -160,6 +148,7 @@ nav ul li a.active::after {
     color: #777;
 }
 
+.step.completed .step-number,
 .step.active .step-number {
     background-color: #000;
     color: white;
@@ -171,14 +160,99 @@ nav ul li a.active::after {
     text-align: center;
 }
 
+.step.completed,
+.step.active {
+    color: black;
+    border-bottom: 3px solid black;
+}
+
+.step.active {
+    font-weight: bold;
+}
+
 .step.active .step-text {
     color: #000;
     font-weight: 600;
 }
 
+/* Navigation buttons */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
 
-/* Main container styles */
-#main-container {
+.back-link,
+.next-link,
+.back,
+.next,
+#back-step,
+#next-step {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.back-link,
+.back,
+#back-step {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.next-link {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #0056b3;
+}
+
+.next,
+#next-step {
+    background-color: #000;
+    color: white;
+    border: none;
+}
+
+.back-link:hover,
+.back:hover,
+#back-step:hover {
+    background-color: #e0e0e0;
+}
+
+.next-link:hover {
+    background-color: #0056b3;
+}
+
+.next:hover,
+#next-step:hover {
+    background-color: #333;
+}
+
+/* Button styles */
+.btn,
+button {
+    background-color: #000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.btn:hover,
+button:hover {
+    background-color: #333;
+}
+
+/* Park page styles */
+#main-container.park {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
@@ -189,13 +263,12 @@ nav ul li a.active::after {
     padding: 30px;
 }
 
-/* First column styles */
-#first-column {
+#first-column.park {
     display: flex;
     flex-direction: column;
 }
 
-#place-name-heading {
+#place-name-heading.park {
     margin-bottom: 15px;
     color: #333;
     font-size: 20px;
@@ -241,7 +314,8 @@ nav ul li a.active::after {
     margin-top: 10px;
 }
 
-.prev-image, .next-image {
+.prev-image,
+.next-image {
     background: none;
     border: none;
     font-size: 16px;
@@ -265,17 +339,16 @@ nav ul li a.active::after {
     background-color: #000;
 }
 
-/* Second column styles */
-#second-column {
+#second-column.park {
     display: flex;
     flex-direction: column;
 }
 
-.search-section {
+.search-section.park {
     margin-bottom: 15px;
 }
 
-.search-section h2 {
+.search-section.park h2 {
     margin-bottom: 15px;
     color: #333;
     font-size: 24px;
@@ -298,19 +371,16 @@ nav ul li a.active::after {
 .park-details {
     background-color: #f9f9f9;
     border-radius: 8px;
-    padding: 5px; /* Change from 20px to 15px */
-    margin-top: 0; /* Ensure there's no additional top margin */
+    padding: 5px;
 }
 
 #selected-park-name {
-    margin-bottom: 10px; /* Change from 15px to 10px */
+    margin-bottom: 10px;
     color: #333;
     font-size: 22px;
-    margin-top:0;
+    margin-top: 0;
     padding-top: 0;
 }
-
-
 
 #selected-park-description {
     margin-bottom: 20px;
@@ -331,7 +401,6 @@ nav ul li a.active::after {
     margin-left: 5px;
 }
 
-/* Facilities section styles */
 .facilities-grid {
     display: flex;
     flex-wrap: wrap;
@@ -354,71 +423,18 @@ nav ul li a.active::after {
     font-size: 28px;
 }
 
-/* Facility section heading */
-#second-column h3 {
+#second-column.park h3 {
     color: #000;
     font-size: 32px;
-    font-weight: 700; /* This matches Figma's weight of 700 */
+    font-weight: 700;
     margin-bottom: 20px;
     margin-top: 30px;
 }
-
 
 #directions-link {
     margin-top: 20px;
 }
 
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #000;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #000;
-}
-
-/* Navigation buttons */
-.navigation-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    padding: 0 30px;
-}
-
-.back, .next {
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-}
-
-.back {
-    background-color: #f0f0f0;
-    color: #555;
-}
-
-.next {
-    background-color: #000;
-    color: white;
-}
-
-.back:hover {
-    background-color: #e0e0e0;
-}
-
-.next:hover {
-    background-color: #000;
-}
 
 /* Loading styles */
 #loading {
@@ -459,7 +475,7 @@ footer {
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -490,7 +506,183 @@ footer {
 }
 
 /* Responsive styles */
-@media (max-width: 992px) {
+@media (max-width: 1360px) {
+    .container {
+        max-width: 1000px;
+    }
+
+    #main-container.park {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .visit-type-grid {
+        max-width: 800px;
+    }
+
+    .visitor {
+        width: 600px;
+    }
+}
+
+@media (max-width: 760px) {
+    header {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    nav ul {
+        margin: 15px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 5px 10px;
+    }
+
+    .container {
+        max-width: 90%;
+        padding: 0 10px;
+    }
+
+    #main-container.park {
+        padding: 15px;
+    }
+
+    #map {
+        height: 250px;
+    }
+
+    .park-image {
+        height: 150px;
+    }
+
+    .facilities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #calendar {
+        grid-template-columns: repeat(7, 30px);
+    }
+
+    .calendar-day {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    .visit-type-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .visit-type-item {
+        flex: none;
+    }
+
+    .visitor {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    nav ul li {
+        margin: 5px;
+    }
+
+    nav ul li a {
+        font-size: 14px;
+    }
+
+    .login-btn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    #progress-bar {
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+
+    .step-text {
+        display: none;
+    }
+
+    #main-container.park {
+        padding: 10px;
+    }
+
+    #place-name-heading.park {
+        font-size: 18px;
+    }
+
+    #map {
+        height: 200px;
+    }
+
+    .park-image {
+        height: 120px;
+    }
+
+    .facilities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #calendar {
+        grid-template-columns: repeat(7, 25px);
+    }
+
+    .calendar-day {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+
+    .visit-type-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .visit-type-item span {
+        font-size: 12px;
+    }
+
+    #second-column.visit {
+        padding: 15px;
+    }
+
+    .visitor {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .btn,
+    button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Responsive styles */
+/* @media (max-width: 992px) {
     #main-container {
         grid-template-columns: 1fr;
     }
@@ -529,4 +721,4 @@ footer {
     .facilities-grid {
         grid-template-columns: 1fr;
     }
-}
+} */

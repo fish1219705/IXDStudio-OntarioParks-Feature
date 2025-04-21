@@ -9,9 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let selectedArrival = null;
     let selectedDeparture = null;
     
-    // Simulated unavailable dates
-    const unavailableDates = ["2025-03-01", "2025-03-02", "2025-03-03"];
-    const availableDates = ["2025-03-05", "2025-03-06", "2025-03-07"];
+    // Fixed unavailable dates (March 5, 6, 7)
+    const unavailableDates = ["2025-03-05", "2025-03-06", "2025-03-07"];
     
     function generateCalendar() {
         calendar.innerHTML = "";
@@ -23,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
             
             if (unavailableDates.includes(date)) {
                 dayElement.classList.add("unavailable");
-            } else if (availableDates.includes(date)) {
-                dayElement.classList.add("available");
             }
             
             dayElement.addEventListener("click", function () {
@@ -74,14 +71,28 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
         
-        const isAvailable = availableDates.includes(selectedArrival) && availableDates.includes(selectedDeparture);
+        // Check if any date in the selected range is in unavailableDates
+        const arrivalDateObj = new Date(selectedArrival);
+        const departureDateObj = new Date(selectedDeparture);
+        let isUnavailable = false;
+        
+        for (let d = arrivalDateObj; d <= departureDateObj; d.setDate(d.getDate() + 1)) {
+            const formattedDate = d.toISOString().split('T')[0];
+            if (unavailableDates.includes(formattedDate)) {
+                isUnavailable = true;
+                break;
+            }
+        }
+        
+        // If the range includes March 5, 6, or 7, it's unavailable; otherwise, randomly decide
+        const isAvailable = !isUnavailable && Math.random() > 0.5;
         
         if (isAvailable) {
             popup.innerHTML = `
                 <div class='popup-content'>
                     <h3>Sound Good! 😊</h3>
                     <p><strong>Available For the Selected Dates</strong></p>
-                    <button id='book-now'>Book Now</button>
+                    <button id='book-now'>OK</button>
                 </div>`;
         } else {
             popup.innerHTML = `
@@ -93,8 +104,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         
         popup.style.display = "block";
-        document.getElementById("try-again")?.addEventListener("click", () => popup.style.display = "none");
-        document.getElementById("book-now")?.addEventListener("click", () => alert("Booking process starts!"));
+        
+        // Add event listener for try-again button
+        document.getElementById("try-again")?.addEventListener("click", () => {
+            popup.style.display = "none";
+        });
+        
+        // Add event listener for book-now button to close popup
+        document.getElementById("book-now")?.addEventListener("click", () => {
+            popup.style.display = "none";
+        });
     });
     
     generateCalendar();
