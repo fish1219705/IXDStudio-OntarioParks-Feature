@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Ontario Parks Booking
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   /* Custom radio and check icons for the progress bar */
+    input[type="radio"]:checked + label > .icon,
+    input[type="checkbox"]:checked + label > .icon {
+      background-color: black;
+      color: white;
+      border-color: black;
+    }
+    /* Tooltip container */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: default;
+    }
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      padding: 5px 8px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 10px;
+      line-height: 1.2;
+      pointer-events: none;
+    }
+    /* Show the tooltip text when hovering */
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 20;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+      background-color: white;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .modal-button {
+      background-color: #0071bc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .modal-button:hover {
+      background-color: #005a9c;
+    }
+  </style>
+ </head>
+ <body class="bg-white font-sans text-black">
+  <header class="flex items-center justify-between px-6 py-4 max-w-[1200px] mx-auto">
+   <div class="flex items-center space-x-4">
+    <img alt="Ontario Parks logo with green hills and blue water waves in a square frame" class="w-[60px] h-[60px] object-contain" height="60" src="https://storage.googleapis.com/a1aa/image/b0114c99-6c90-4b97-0052-df44646e4804.jpg" width="60"/>
+    <nav class="hidden md:flex space-x-8 font-semibold text-base">
+     <a class="hover:underline" href="#">
+      Park &amp; Activities
+     </a>
+     <a class="hover:underline" href="#">
+      Reservation
+     </a>
+     <a class="hover:underline" href="#">
+      Plan Your Visit
+     </a>
+     <a class="hover:underline" href="#">
+      Education
+     </a>
+     <a class="hover:underline" href="#">
+      About Us
+     </a>
+     <a class="hover:underline" href="faq.html">
+      FAQs
+     </a>
+    </nav>
+   </div>
+   <button class="bg-[#0071bc] text-white font-semibold rounded-md px-5 py-2 text-sm md:text-base hover:bg-[#005a9c] transition">
+    Book a Campsite
+   </button>
+  </header>
+  <section class="max-w-[1200px] mx-auto px-6 mt-6">
+   <!-- Progress bar -->
+   <form class="flex items-center justify-between max-w-[900px] mx-auto">
+    <div class="flex items-center space-x-2">
+     <input checked="" class="hidden" disabled="" id="choose-park" type="checkbox"/>
+     <label class="flex items-center cursor-default select-none space-x-2" for="choose-park">
+      <span class="icon flex items-center justify-center w-5 h-5 rounded-full border border-black text-xs font-bold">
+       ✓
+      </span>
+      <span class="text-xs font-semibold">
+       Choose a Park
+      </span>
+     </label>
+     <div class="border-b border-black w-14">
+     </div>
+    </div>
+    <div class="flex items-center space-x-2">
+     <input checked="" class="hidden" disabled="" id="visit-type" type="checkbox"/>
+     <label class="flex items-center cursor-default select-none space-x-2" for="visit-type">
+      <span class="icon flex items-center justify-center w-5 h-5 rounded-full border border-black text-xs font-bold">
+       ✓
+      </span>
+      <span class="text-xs font-semibold">
+       Visit Type
+      </span>
+     </label>
+     <div class="border-b border-black w-14">
+     </div>
+    </div>
+    <div class="flex items-center space-x-2">
+     <input checked="" class="hidden" disabled="" id="dates-availability" name="step" type="radio"/>
+     <label class="flex items-center cursor-default select-none space-x-2" for="dates-availability">
+      <span class="icon flex items-center justify-center w-5 h-5 rounded-full border border-black text-xs font-bold">
+       ●
+      </span>
+      <span class="text-xs font-semibold">
+       Dates &amp; Availability
+      </span>
+     </label>
+     <div class="border-b border-black w-14">
+     </div>
+    </div>
+    <div class="flex items-center space-x-2">
+     <input class="hidden" disabled="" id="visitor-info" name="step" type="radio"/>
+     <label class="flex items-center cursor-default select-none space-x-2" for="visitor-info">
+      <span class="icon flex items-center justify-center w-5 h-5 rounded-full border border-black text-xs font-bold">
+       ○
+      </span>
+      <span class="text-xs font-semibold">
+       Visitor Info
+      </span>
+     </label>
+     <div class="border-b border-black w-14">
+     </div>
+    </div>
+    <div class="flex items-center space-x-2">
+     <input class="hidden" disabled="" id="addons" name="step" type="radio"/>
+     <label class="flex items-center cursor-default select-none space-x-2" for="addons">
+      <span class="icon flex items-center justify-center w-5 h-5 rounded-full border border-black text-xs font-bold">
+       ○
+      </span>
+      <span class="text-xs font-semibold">
+       Add-ons
+      </span>
+     </label>
+     <div class="border-b border-black w-14">
+     </div>
+    </div>
+    <div class="flex items-center space-x-2">
+     <input class="hidden" disabled="" id="payment" name="step" type="radio"/>
+     <label class="flex items-center cursor-default select-none space-x-2" for="payment">
+      <span class="icon flex items-center justify-center w-5 h-5 rounded-full border border-black text-xs font-bold">
+       ○
+      </span>
+      <span class="text-xs font-semibold">
+       Payment
+      </span>
+     </label>
+     <div class="border-b border-black w-14">
+     </div>
+    </div>
+    <div class="flex items-center space-x-2">
+     <input class="hidden" disabled="" id="confirmation" name="step" type="radio"/>
+     <label class="flex items-center cursor-default select-none space-x-2" for="confirmation">
+      <span class="icon flex items-center justify-center w-5 h-5 rounded-full border border-black text-xs font-bold">
+       ○
+      </span>
+      <span class="text-xs font-semibold">
+       Confirmation
+      </span>
+     </label>
+    </div>
+   </form>
+  </section>
+  <main class="max-w-[1200px] mx-auto px-6 mt-8 flex flex-col md:flex-row md:space-x-12">
+   <!-- Left side calendar -->
+   <section class="flex-1 max-w-[400px]">
+    <h2 class="font-bold text-xl mb-4 leading-tight">
+     Pick Dates &amp; View
+     <br/>
+     Availability
+    </h2>
+    <div class="flex items-center justify-between mb-4 text-lg font-semibold">
+     <button aria-label="Previous month" class="text-black hover:text-gray-700" id="prevMonthBtn">
+      <i class="fas fa-chevron-left">
+      </i>
+     </button>
+     <div id="monthYearLabel" class="select-none">
+      May, 2025
+     </div>
+     <button aria-label="Next month" class="text-black hover:text-gray-700" id="nextMonthBtn">
+      <i class="fas fa-chevron-right">
+      </i>
+     </button>
+    </div>
+    <table class="w-full text-center border-separate border-spacing-1" id="calendarTable">
+     <thead>
+      <tr class="text-xs font-semibold text-black">
+       <th>
+        Sun
+       </th>
+       <th>
+        Mon
+       </th>
+       <th>
+        Tue
+       </th>
+       <th>
+        Wed
+       </th>
+       <th>
+        Thu
+       </th>
+       <th>
+        Fri
+       </th>
+       <th>
+        Sat
+       </th>
+      </tr>
+     </thead>
+     <tbody id="calendarBody">
+      <!-- Calendar days will be generated here -->
+     </tbody>
+    </table>
+    <!-- Legend -->
+    <div class="mt-6 text-xs text-gray-700 space-y-1 max-w-[320px]">
+     <div class="flex items-center space-x-2">
+      <div class="w-3 h-3 rounded-full bg-green-400">
+      </div>
+      <span>
+       Selected Date
+      </span>
+      <div class="w-3 h-3 rounded-full bg-gray-300 ml-4">
+      </div>
+      <span>
+       Unavailable Date
+      </span>
+      <div class="w-3 h-3 rounded-full bg-red-400 ml-4">
+      </div>
+      <span>
+       Past Date
+      </span>
+     </div>
+     <div class="flex items-center space-x-2">
+      <div class="w-3 h-3 rounded-full bg-gray-300 opacity-50">
+      </div>
+      <span>
+       Minimum Stay Required
+      </span>
+      <div class="w-3 h-3 rounded-full bg-gray-300 ml-4">
+      </div>
+      <span>
+       No Arrival
+      </span>
+     </div>
+    </div>
+   </section>
+   <!-- Right side form -->
+   <section class="flex-1 max-w-[400px] mt-10 md:mt-0">
+    <table class="w-full border border-black border-collapse mb-4">
+     <thead>
+      <tr class="bg-black text-white text-left">
+       <th class="px-4 py-2 font-semibold">
+        Arrival Date
+       </th>
+       <th class="px-4 py-2 font-semibold">
+        Departure Date
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td class="border border-black text-center py-6 font-bold text-2xl" id="arrivalDateCell">
+        -
+        <br/>
+        <span class="uppercase font-extrabold">
+         SELECT DATE
+        </span>
+       </td>
+       <td class="border border-black text-center py-6 font-bold text-2xl" id="departureDateCell">
+        -
+        <br/>
+        <span class="uppercase font-extrabold">
+         SELECT DATE
+        </span>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <select aria-label="Number of adults" class="w-full bg-gray-500 text-white font-semibold rounded-md px-4 py-3 mb-6 appearance-none cursor-pointer">
+     <option disabled="" selected="">
+      Number of adults
+     </option>
+     <option>
+      1
+     </option>
+     <option>
+      2
+     </option>
+     <option>
+      3
+     </option>
+     <option>
+      4
+     </option>
+    </select>
+    <select aria-label="Number of children" class="w-full bg-gray-500 text-white font-semibold rounded-md px-4 py-3 mb-6 appearance-none cursor-pointer">
+     <option disabled="" selected="">
+      Number of children
+     </option>
+     <option>
+      0
+     </option>
+     <option>
+      1
+     </option>
+     <option>
+      2
+     </option>
+    </select>
+    <input class="w-full border border-black rounded-md px-4 py-3 mb-6 text-sm" placeholder="Promo Code" type="text"/>
+    <button class="w-full bg-[#0071bc] text-white font-bold rounded-md py-3 text-base hover:bg-[#005a9c] transition" id="checkAvailabilityBtn" type="button">
+     Check Availability
+    </button>
+   </section>
+  </main>
+  
+  <!-- Modal for availability results -->
+  <div id="availabilityModal" class="modal">
+    <div class="modal-content">
+      <h3 id="modalTitle" class="text-xl font-bold mb-4"></h3>
+      <p id="modalMessage"></p>
+      <button id="modalCloseBtn" class="modal-button"></button>
+    </div>
+  </div>
+  
+  <!-- Modal for date selection error -->
+  <div id="errorModal" class="modal">
+    <div class="modal-content">
+      <h3 class="text-xl font-bold mb-4">Date Selection Required</h3>
+      <p>Please select both arrival and departure dates before checking availability.</p>
+      <button id="errorCloseBtn" class="modal-button">OK</button>
+    </div>
+  </div>
+  
+  <script>
+   // JavaScript to generate calendar with April 2025 as current month and future months
+   const calendarBody = document.getElementById("calendarBody");
+   const monthYearLabel = document.getElementById("monthYearLabel");
+   const prevMonthBtn = document.getElementById("prevMonthBtn");
+   const nextMonthBtn = document.getElementById("nextMonthBtn");
+   const arrivalDateCell = document.getElementById("arrivalDateCell");
+   const departureDateCell = document.getElementById("departureDateCell");
+   const checkAvailabilityBtn = document.getElementById("checkAvailabilityBtn");
+   const availabilityModal = document.getElementById("availabilityModal");
+   const errorModal = document.getElementById("errorModal");
+   const modalTitle = document.getElementById("modalTitle");
+   const modalMessage = document.getElementById("modalMessage");
+   const modalCloseBtn = document.getElementById("modalCloseBtn");
+   const errorCloseBtn = document.getElementById("errorCloseBtn");
+
+   // Set April 2025 as "today" for this example
+   const today = new Date(2025, 3, 1); // April 1, 2025
+   today.setHours(0,0,0,0);
+
+   // Selected arrival and departure dates (null until user selects)
+   let selectedArrival = null;
+   let selectedDeparture = null;
+
+   // Dates that are under maintenance or unavailable (fixed set for predictability)
+   // Store as strings "YYYY-MM-DD" for easy comparison
+   let maintenanceDates = [
+     "2025-04-15", 
+     "2025-04-16", 
+     "2025-04-17",
+     "2025-05-05",
+     "2025-05-06",
+     "2025-05-20",
+     "2025-06-12",
+     "2025-06-13"
+   ];
+
+   // Current displayed month and year
+   let currentMonth = 3; // April
+   let currentYear = 2025;
+
+   // Helper to format date as YYYY-MM-DD
+   function formatDate(date) {
+     const y = date.getFullYear();
+     const m = (date.getMonth() + 1).toString().padStart(2, "0");
+     const d = date.getDate().toString().padStart(2, "0");
+     return `${y}-${m}-${d}`;
+   }
+
+   // Render calendar for currentMonth and currentYear
+   function renderCalendar(year, month) {
+     calendarBody.innerHTML = "";
+     monthYearLabel.textContent = new Date(year, month).toLocaleString("en-US", {month: "long", year: "numeric"});
+
+     const firstDay = new Date(year, month, 1);
+     const lastDay = new Date(year, month + 1, 0);
+     const daysInMonth = lastDay.getDate();
+     const startDay = firstDay.getDay(); // 0=Sun, 6=Sat
+
+     let dayCounter = 1;
+     for (let week = 0; week < 6; week++) {
+       const tr = document.createElement("tr");
+       for (let day = 0; day < 7; day++) {
+         const td = document.createElement("td");
+         if (week === 0 && day < startDay) {
+           // Empty cell before first day
+           td.innerHTML = "&nbsp;";
+         } else if (dayCounter > daysInMonth) {
+           // Empty cell after last day
+           td.innerHTML = "&nbsp;";
+         } else {
+           const dateObj = new Date(year, month, dayCounter);
+           const dateStr = formatDate(dateObj);
+
+           // Determine classes and content
+           let classes = "rounded-md text-xs font-semibold w-8 h-8 flex items-center justify-center mx-auto cursor-pointer select-none";
+           let tooltipHTML = "";
+           let isDisabled = false;
+
+           if (dateObj < today) {
+             // Past date - red background, disabled
+             classes += " bg-red-400 text-white cursor-not-allowed";
+             isDisabled = true;
+           } else if (maintenanceDates.includes(dateStr)) {
+             // Maintenance date - grey background with tooltip, disabled
+             classes += " bg-gray-300 text-black tooltip";
+             tooltipHTML = `<span class="tooltiptext">Under Maintenance</span>`;
+             isDisabled = true;
+           } else if (selectedArrival && selectedDeparture && dateObj >= selectedArrival && dateObj <= selectedDeparture) {
+             // Selected date range - green background
+             classes += " bg-green-400 text-black";
+           } else if (selectedArrival && dateObj.getTime() === selectedArrival.getTime()) {
+             // Only arrival selected - green background
+             classes += " bg-green-400 text-black";
+           } else {
+             // Future date not selected - no background color, black text
+             classes += " text-black";
+           }
+
+           td.className = "";
+           td.innerHTML = `<div class="${classes}">${dayCounter}${tooltipHTML}</div>`;
+
+           if (!isDisabled) {
+             // Add click event to select arrival or departure date
+             td.querySelector("div").addEventListener("click", () => {
+               if (!selectedArrival) {
+                 // First click - set arrival date
+                 selectedArrival = dateObj;
+                 selectedDeparture = null;
+               } else if (!selectedDeparture && dateObj > selectedArrival) {
+                 // Second click after arrival and is after arrival date - set departure date
+                 selectedDeparture = dateObj;
+               } else if (!selectedDeparture && dateObj.getTime() === selectedArrival.getTime()) {
+                 // Second click on same date as arrival - clear arrival
+                 selectedArrival = null;
+               } else {
+                 // Any other click - reset selection to this date as arrival
+                 selectedArrival = dateObj;
+                 selectedDeparture = null;
+               }
+               updateSelectedDatesDisplay();
+               renderCalendar(currentYear, currentMonth);
+             });
+           } else {
+             // Disabled dates have no pointer events on the div
+             td.querySelector("div").style.pointerEvents = "none";
+           }
+
+           dayCounter++;
+         }
+         tr.appendChild(td);
+       }
+       calendarBody.appendChild(tr);
+       if (dayCounter > daysInMonth) break;
+     }
+   }
+
+   // Update the arrival and departure date cells on the right side
+   function updateSelectedDatesDisplay() {
+     const options = {month: "long"};
+     
+     if (selectedArrival) {
+       arrivalDateCell.innerHTML = `${selectedArrival.getDate()}<br/><span class="uppercase font-extrabold">${selectedArrival.toLocaleDateString("en-US", options)}</span>`;
+     } else {
+       arrivalDateCell.innerHTML = `-<br/><span class="uppercase font-extrabold">SELECT DATE</span>`;
+     }
+     
+     if (selectedDeparture) {
+       departureDateCell.innerHTML = `${selectedDeparture.getDate()}<br/><span class="uppercase font-extrabold">${selectedDeparture.toLocaleDateString("en-US", options)}</span>`;
+     } else {
+       departureDateCell.innerHTML = `-<br/><span class="uppercase font-extrabold">SELECT DATE</span>`;
+     }
+   }
+
+   // Check if the selected date range contains any maintenance dates
+   function checkAvailability() {
+     // Check if both dates are selected
+     if (!selectedArrival || !selectedDeparture) {
+       errorModal.style.display = "block";
+       return;
+     }
+     
+     // Check if any of the days in the range are in maintenance
+     let currentDate = new Date(selectedArrival);
+     let isAvailable = true;
+     
+     while (currentDate <= selectedDeparture) {
+       if (maintenanceDates.includes(formatDate(currentDate))) {
+         isAvailable = false;
+         break;
+       }
+       // Move to next day
+       currentDate.setDate(currentDate.getDate() + 1);
+     }
+     
+     // Show availability result in modal
+     if (isAvailable) {
+       modalTitle.textContent = "Sounds Good! 😊";
+       modalMessage.textContent = "Available for the selected dates";
+       modalCloseBtn.textContent = "OK";
+     } else {
+       modalTitle.textContent = "Not Available";
+       modalMessage.textContent = "Sorry, the selected dates are unavailable. Please try different dates.";
+       modalCloseBtn.textContent = "Try Another Date";
+     }
+     
+     availabilityModal.style.display = "block";
+   }
+
+   // Navigation buttons
+   prevMonthBtn.addEventListener("click", () => {
+     // Prevent going to past months before April 2025
+     if (currentYear > 2025 || (currentYear === 2025 && currentMonth > 3)) {
+       currentMonth--;
+       if (currentMonth < 0) {
+         currentMonth = 11;
+         currentYear--;
+       }
+       renderCalendar(currentYear, currentMonth);
+     }
+   });
+
+   nextMonthBtn.addEventListener("click", () => {
+     currentMonth++;
+     if (currentMonth > 11) {
+       currentMonth = 0;
+       currentYear++;
+     }
+     renderCalendar(currentYear, currentMonth);
+   });
+   
+   // Check Availability button
+   checkAvailabilityBtn.addEventListener("click", checkAvailability);
+   
+   // Close modal buttons
+   modalCloseBtn.addEventListener("click", () => {
+     availabilityModal.style.display = "none";
+   });
+   
+   errorCloseBtn.addEventListener("click", () => {
+     errorModal.style.display = "none";
+   });
+   
+   // Close modals when clicking outside
+   window.addEventListener("click", (event) => {
+     if (event.target === availabilityModal) {
+       availabilityModal.style.display = "none";
+     }
+     if (event.target === errorModal) {
+       errorModal.style.display = "none";
+     }
+   });
+
+   // Initialize
+   updateSelectedDatesDisplay();
+   renderCalendar(currentYear, currentMonth);
+  </script>
+ </body>
+</html>

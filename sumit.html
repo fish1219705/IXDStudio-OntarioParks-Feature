@@ -1,0 +1,362 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Ontario Parks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    #loading {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 1000;
+    }
+    .facility-icon {
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body class="bg-white text-black">
+  <header class="flex items-center justify-between px-6 py-4 max-w-[1200px] mx-auto">
+    <div class="flex items-center space-x-6">
+      <img alt="Ontario Parks logo with green hills and blue water" class="w-[60px] h-[60px] object-contain" height="60" src="https://storage.googleapis.com/a1aa/image/86111248-ccfa-4434-40a7-1a5198a853ef.jpg" width="60"/>
+      <nav class="hidden md:flex space-x-10 font-semibold text-base">
+        <a class="hover:underline" href="#">Park &amp; Activities</a>
+        <a class="hover:underline" href="#">Reservation</a>
+        <a class="hover:underline" href="#">Plan Your Visit</a>
+        <a class="hover:underline" href="#">Education</a>
+        <a class="hover:underline" href="#">Contact Us</a>
+        <a class="hover:underline" href="faq.html">FAQs</a>
+      </nav>
+    </div>
+    <button class="bg-[#0071bc] text-white text-sm font-semibold rounded-md px-5 py-2 hover:bg-[#005a9c] transition" type="button">
+      Book a Campsite
+    </button>
+  </header>
+  
+  <nav aria-label="Progress" class="max-w-[1200px] mx-auto px-6 mt-4 flex flex-wrap justify-between items-center text-[10px] font-semibold">
+    <div class="flex items-center space-x-2 flex-1 min-w-[90px] max-w-[130px]">
+      <input aria-current="step" checked="" class="w-3 h-3" id="choose-park" name="progress" type="radio"/>
+      <hr class="border border-black flex-grow"/>
+      <label class="whitespace-nowrap" for="choose-park">Choose a Park</label>
+    </div>
+    <div class="flex items-center space-x-2 flex-1 min-w-[90px] max-w-[130px]">
+      <input class="w-3 h-3" id="visit-type" name="progress" type="radio"/>
+      <hr class="border border-black flex-grow"/>
+      <label class="whitespace-nowrap" for="visit-type">Visit Type</label>
+    </div>
+    <div class="flex items-center space-x-2 flex-1 min-w-[90px] max-w-[130px]">
+      <input class="w-3 h-3" id="dates-availability" name="progress" type="radio"/>
+      <hr class="border border-black flex-grow"/>
+      <label class="whitespace-nowrap" for="dates-availability">Dates &amp; Availability</label>
+    </div>
+    <div class="flex items-center space-x-2 flex-1 min-w-[90px] max-w-[130px]">
+      <input class="w-3 h-3" id="visitor-info" name="progress" type="radio"/>
+      <hr class="border border-black flex-grow"/>
+      <label class="whitespace-nowrap" for="visitor-info">Visitor Info</label>
+    </div>
+    <div class="flex items-center space-x-2 flex-1 min-w-[90px] max-w-[130px]">
+      <input class="w-3 h-3" id="addons" name="progress" type="radio"/>
+      <hr class="border border-black flex-grow"/>
+      <label class="whitespace-nowrap" for="addons">Add-ons</label>
+    </div>
+    <div class="flex items-center space-x-2 flex-1 min-w-[90px] max-w-[130px]">
+      <input class="w-3 h-3" id="payment" name="progress" type="radio"/>
+      <hr class="border border-black flex-grow"/>
+      <label class="whitespace-nowrap" for="payment">Payment</label>
+    </div>
+    <div class="flex items-center space-x-2 flex-1 min-w-[90px] max-w-[130px]">
+      <input class="w-3 h-3" id="confirmation" name="progress" type="radio"/>
+      <label class="whitespace-nowrap" for="confirmation">Confirmation</label>
+    </div>
+  </nav>
+  
+  <main class="max-w-[1200px] mx-auto px-6 mt-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
+    <section class="lg:col-span-7">
+      <h2 class="font-bold text-xl mb-4">Choose a Park</h2>
+      <div class="relative rounded-xl overflow-hidden h-[400px]">
+        <div id="map" class="w-full h-full"></div>
+        <div id="loading">Loading...</div>
+      </div>
+      <h3 class="font-bold text-lg mt-8 mb-3">Legend</h3>
+      <ul class="flex flex-wrap gap-x-8 gap-y-4 text-xs font-normal">
+        <li class="flex items-center space-x-2 min-w-[140px]">
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C10.343 2 9 3.343 9 5c0 1.657 3 7 3 7s3-5.343 3-7c0-1.657-1.343-3-3-3zM7 20c0-2.761 2.239-5 5-5s5 2.239 5 5H7z"></path>
+          </svg>
+          <span>Provincial Parks</span>
+        </li>
+        <li class="flex items-center space-x-2 min-w-[140px]">
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L7 7v13h10V7l-5-5zM9 20v-7h6v7H9z"></path>
+          </svg>
+          <span>Camp Ground</span>
+        </li>
+        <li class="flex items-center space-x-2 min-w-[140px]">
+          <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8 6 5 10 5 14a7 7 0 0 0 14 0c0-4-3-8-7-12z"></path>
+            <circle cx="12" cy="14" r="3"></circle>
+          </svg>
+          <span>Backcountry Access Point</span>
+        </li>
+        <li class="flex items-center space-x-2 min-w-[140px]">
+          <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect height="6" rx="1" ry="1" width="14" x="5" y="9"></rect>
+            <path d="M5 15v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"></path>
+          </svg>
+          <span>Closed Parks</span>
+        </li>
+      </ul>
+    </section>
+    
+    <section class="lg:col-span-5 flex flex-col justify-between">
+      <div>
+        <h2 class="font-bold text-xl mb-4">Search Parks</h2>
+        <form class="mb-6" id="park-form" onsubmit="return false;">
+          <label class="sr-only" for="park-select">Search Parks</label>
+          <div class="relative">
+            <select aria-label="Select a park" class="w-full rounded-full border border-[#0071bc] py-2 px-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#0071bc]" id="park-select" name="park-select">
+              <option value="">Select a park</option>
+              <option value="1">Algonquin Provincial Park</option>
+              <option value="2">Bon Echo Provincial Park</option>
+              <option value="3">Killarney Provincial Park</option>
+              <option value="4">Pinery Provincial Park</option>
+              <option value="5">Killbear Provincial Park</option>
+              <option value="6">Bruce Peninsula National Park</option>
+              <option value="7">Sleeping Giant Provincial Park</option>
+            </select>
+            <button aria-label="Search" class="absolute right-3 top-1/2 -translate-y-1/2 text-[#0071bc]" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+        
+        <div id="park-info" class="mb-6">
+          <h3 class="font-bold text-lg mb-2" id="selected-park-name"></h3>
+          <p class="text-sm mb-3 leading-relaxed" id="selected-park-description"></p>
+          <div id="facilities-container" class="mb-3">
+            <h4 class="font-semibold text-sm mb-1">Facilities:</h4>
+            <div id="facilities-list" class="flex flex-wrap"></div>
+          </div>
+          <a class="text-[#0071bc] font-semibold text-sm hover:underline inline-flex items-center" href="#" id="more-details" target="_blank">
+            More Details <i class="fas fa-arrow-right ml-1"></i>
+          </a>
+          <div class="mt-3">
+            <a class="text-[#0071bc] font-semibold text-sm hover:underline inline-flex items-center" href="#" id="directions-link" target="_blank">
+              Get Directions <i class="fas fa-directions ml-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <h3 class="font-bold text-lg mt-8 mb-4">Activities</h3>
+        <ul class="grid grid-cols-5 gap-y-6 gap-x-4 text-center text-xs font-normal">
+          <li class="flex flex-col items-center space-y-1">
+            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6h16v2H4zM4 10h16v2H4zM4 14h16v2H4z"></path>
+            </svg>
+            <span>Picnicking</span>
+          </li>
+          <li class="flex flex-col items-center space-y-1">
+            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L7 7v13h10V7l-5-5zM9 20v-7h6v7H9z"></path>
+            </svg>
+            <span>Camping</span>
+          </li>
+          <li class="flex flex-col items-center space-y-1">
+            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 21l6-9-6-9"></path>
+            </svg>
+            <span>Rock Climbing</span>
+          </li>
+          <li class="flex flex-col items-center space-y-1">
+            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 21l6-9-6-9"></path>
+            </svg>
+            <span>Hiking</span>
+          </li>
+          <li class="flex flex-col items-center space-y-1">
+            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2a10 10 0 0 0 0 20"></path>
+              <path d="M12 12l8 4"></path>
+            </svg>
+            <span>Wildlife Watching</span>
+          </li>
+          <li class="flex flex-col items-center space-y-1">
+            <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Fishing</span>
+          </li>
+          <li class="flex flex-col items-center space-y-1">
+            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 12h20"></path>
+              <path d="M12 2v20"></path>
+            </svg>
+            <span>Swimming</span>
+          </li>
+          <li class="flex flex-col items-center space-y-1">
+            <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 12l18 0"></path>
+              <path d="M12 3l0 18"></path>
+            </svg>
+            <span>Kayaking</span>
+          </li>
+          <li class="flex flex-col items-center space-y-1">
+            <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 12h20"></path>
+              <path d="M12 2v20"></path>
+            </svg>
+            <span>Boating</span>
+          </li>
+          <li class="flex flex-col items-center space-y-1">
+            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a10 10 0 0 0 0 20"></path>
+            </svg>
+            <span>Stargazing</span>
+          </li>
+        </ul>
+      </div>
+      <button class="mt-6 bg-[#009e66] text-white font-semibold rounded-md py-2 px-8 self-start hover:bg-[#007a4d] transition" id="next-btn" type="button">
+        Next
+      </button>
+    </section>
+  </main>
+  
+  <footer class="max-w-[1200px] mx-auto px-6 mt-16 mb-6 grid grid-cols-1 md:grid-cols-3 gap-10 text-xs text-black">
+    <div>
+      <img alt="Ontario Parks logo with green hills and blue water" class="w-[60px] h-[60px] object-contain mb-6" height="60" src="https://storage.googleapis.com/a1aa/image/86111248-ccfa-4434-40a7-1a5198a853ef.jpg" width="60"/>
+      <p class="mb-1 font-semibold">Address:</p>
+      <p class="mb-4">OntarioPark</p>
+      <p class="mb-1 font-semibold">Contact:</p>
+      <p class="mb-1">1800 123 4567</p>
+      <p class="mb-4">info@ontariopark.ca</p>
+      <div class="flex space-x-4 text-lg text-black">
+        <a aria-label="Facebook" class="hover:text-[#0071bc]" href="#"><i class="fab fa-facebook-f"></i></a>
+        <a aria-label="Instagram" class="hover:text-[#0071bc]" href="#"><i class="fab fa-instagram"></i></a>
+        <a aria-label="X" class="hover:text-[#0071bc]" href="#"><i class="fab fa-x-twitter"></i></a>
+        <a aria-label="LinkedIn" class="hover:text-[#0071bc]" href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a aria-label="YouTube" class="hover:text-[#0071bc]" href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p class="mt-6 text-[10px] text-black/70">© 2024 OntarioPark. All rights reserved.</p>
+    </div>
+    <div></div>
+    <div class="flex flex-col space-y-3 font-semibold text-xs">
+      <a class="hover:underline" href="#">Park &amp; Activities</a>
+      <a class="hover:underline" href="#">Reservation</a>
+      <a class="hover:underline" href="#">Plan Your Visit</a>
+      <a class="hover:underline" href="#">Education</a>
+      <a class="hover:underline" href="#">About Us</a>
+    </div>
+  </footer>
+  
+  <div class="max-w-[1200px] mx-auto px-6 flex justify-end space-x-6 text-[10px] text-black mb-4">
+    <a class="hover:underline" href="#">Privacy Policy</a>
+    <a class="hover:underline" href="#">Terms of Service</a>
+    <a class="hover:underline" href="#">Cookies Settings</a>
+  </div>
+
+  <!-- 引入 Google Maps JavaScript API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_iXNTImyuhkXhWTQtBf1rHW6gUZ7E2MY&libraries=places&language=en&callback=initMap" async defer></script>
+  
+  <script>
+    function initMap() {
+      // Hide the More Details link initially
+      document.getElementById("more-details").style.display = "none";
+      document.getElementById("directions-link").style.display = "none";
+      document.getElementById("facilities-container").style.display = "none"; 
+
+      const parks = {
+        "1": { name: "Algonquin Provincial Park", lat: 45.8372, lng: -78.3790, description: "Known for its wildlife and canoe routes.", image: "algonquin.jpg", facilities: ["🚻", "🏕️", "🚶"] },
+        "2": { name: "Bon Echo Provincial Park", lat: 44.8923, lng: -77.1935, description: "Famous for Mazinaw Rock with Indigenous pictographs.", image: "bonnecho.jpg", facilities: ["🚻", "🔥", "🚣"] },
+        "3": { name: "Killarney Provincial Park", lat: 46.0058, lng: -81.3957, description: "Known for its stunning landscapes and hiking trails.", image: "killarney.jpg", facilities: ["🚻", "🏞️", "🛶"] },
+        "4": { name: "Pinery Provincial Park", lat: 43.2692, lng: -81.8110, description: "Located along Lake Huron with sandy beaches.", image: "pinery.jpg", facilities: ["🚻", "🏖️", "🚴"] },
+        "5": { name: "Killbear Provincial Park", lat: 45.3715, lng: -80.2132, description: "Known for its beaches and Georgian Bay views.", image: "killbear.jpg", facilities: ["🚻", "⛺", "🏊"] },
+        "6": { name: "Bruce Peninsula National Park", lat: 45.2298, lng: -81.5250, description: "Famous for its cliffs and crystal-clear waters.", image: "brucepeninsula.jpg", facilities: ["🚻", "🏞️", "🐾"] },
+        "7": { name: "Sleeping Giant Provincial Park", lat: 48.2425, lng: -88.8183, description: "Offers hiking trails with stunning views over Thunder Bay.", image: "sleepinggiant.jpg", facilities: ["🚻", "⛰️", "🚶"] }
+      };
+
+      const parkDirectionsLinks = {
+        "1": "https://www.google.com/maps/dir/?api=1&destination=45.8372,-78.3790",
+        "2": "https://www.google.com/maps/dir/?api=1&destination=44.8923,-77.1935",
+        "3": "https://www.google.com/maps/dir/?api=1&destination=46.0058,-81.3957",
+        "4": "https://www.google.com/maps/dir/?api=1&destination=43.2692,-81.8110",
+        "5": "https://www.google.com/maps/dir/?api=1&destination=45.3715,-80.2132",
+        "6": "https://www.google.com/maps/dir/?api=1&destination=45.2298,-81.5250",
+        "7": "https://www.google.com/maps/dir/?api=1&destination=48.2425,-88.8183"
+      };
+
+      const defaultLocation = { lat: 50.0000, lng: -85.0000 };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: defaultLocation,
+        zoom: 5,
+      });
+
+      let marker = new google.maps.Marker({ map, visible: false });
+
+      document.getElementById("park-select").addEventListener("change", function () {
+        document.getElementById("loading").style.display = "block";
+        setTimeout(() => {
+          const parkId = this.value;
+          if (!parkId) {
+            map.setCenter(defaultLocation);
+            map.setZoom(5);
+            marker.setVisible(false);
+            
+            // Hide the More Details link if no park is selected
+            document.getElementById("selected-park-name").textContent = "";
+            document.getElementById("selected-park-description").textContent = "";
+            document.getElementById("more-details").style.display = "none";
+            document.getElementById("directions-link").style.display = "none";
+            document.getElementById("facilities-container").style.display = "none";
+            
+            document.getElementById("loading").style.display = "none";
+            return;
+          }
+
+          const park = parks[parkId];
+          map.setCenter({ lat: park.lat, lng: park.lng });
+          map.setZoom(8);
+          marker.setPosition({ lat: park.lat, lng: park.lng });
+          marker.setVisible(true);
+
+          document.getElementById("selected-park-name").textContent = park.name;
+          document.getElementById("selected-park-description").textContent = park.description;
+          document.getElementById("more-details").href = `https://www.google.com/search?q=${encodeURIComponent(park.name)}`;
+          document.getElementById("more-details").style.display = "inline-block";
+
+          document.getElementById("directions-link").href = parkDirectionsLinks[parkId];
+          document.getElementById("directions-link").style.display = "block";
+
+          // Facilities
+          const facilitiesContainer = document.getElementById("facilities-container");
+          const facilitiesList = document.getElementById("facilities-list");
+          facilitiesList.innerHTML = park.facilities.map(facility => `<span class='facility-icon'>${facility}</span>`).join(" ");
+          facilitiesContainer.style.display = "block";
+
+          document.getElementById("loading").style.display = "none";
+        }, 500);
+      });
+    }
+
+    // Next button click - redirect to dates availability page
+    document.getElementById("next-btn").addEventListener("click", () => {
+      // Assuming the dates availability page URL is /dates-availability.html
+      // You can change this URL to your actual page
+      window.location.href = "/dates-availability.html";
+    });
+  </script>
+</body>
+</html>
